@@ -1,0 +1,1609 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" content="text/html; charset=iso-8859-1" />
+<title>Steam: Game and Player Statistics</title>
+	<link href="https://store.fastly.steamstatic.com/public/shared/css/motiva_sans.css?v=YzJgj1FjzW34&amp;l=schinese&amp;_cdn=fastly" rel="stylesheet" type="text/css">
+<link href="https://store.fastly.steamstatic.com/public/shared/css/shared_global.css?v=JnJq5zVNmuba&amp;l=schinese&amp;_cdn=fastly" rel="stylesheet" type="text/css">
+<link href="https://store.fastly.steamstatic.com/public/shared/css/buttons.css?v=ecbk11GZ8OUy&amp;l=schinese&amp;_cdn=fastly" rel="stylesheet" type="text/css">
+<link href="https://store.fastly.steamstatic.com/public/css/v6/store.css?v=kIy5tRldcNht&amp;l=schinese&amp;_cdn=fastly" rel="stylesheet" type="text/css">
+	<link href="https://store.fastly.steamstatic.com/public/css/styles_stats.css?v=nS8dH5gFDa48&amp;l=schinese&amp;_cdn=fastly" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/jquery-1.8.3.min.js?v=NXam5zydzNu8&amp;l=schinese&amp;_cdn=fastly"></script>
+<script type="text/javascript">$J = jQuery.noConflict();</script><script type="text/javascript">VALVE_PUBLIC_PATH = "https:\/\/store.fastly.steamstatic.com\/public\/";</script><script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/tooltip.js?v=QYkT4eS5mbTN&amp;l=schinese&amp;_cdn=fastly"></script>
+
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/shared_global.js?v=ZHzDbYhG8bst&amp;l=schinese&amp;_cdn=fastly"></script>
+
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/auth_refresh.js?v=w6QbwI-5-j2S&amp;l=schinese&amp;_cdn=fastly"></script>
+
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/main.js?v=XLGl79yhROqo&amp;l=schinese&amp;_cdn=fastly"></script>
+
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/dynamicstore.js?v=dcewggAZSorY&amp;l=schinese&amp;_cdn=fastly"></script>
+
+<script type="text/javascript">
+	var __PrototypePreserve=[];
+	__PrototypePreserve[0] = Array.from;
+	__PrototypePreserve[1] = Array.prototype.filter;
+	__PrototypePreserve[2] = Array.prototype.flatMap;
+	__PrototypePreserve[3] = Array.prototype.find;
+	__PrototypePreserve[4] = Array.prototype.some;
+	__PrototypePreserve[5] = Function.prototype.bind;
+	__PrototypePreserve[6] = HTMLElement.prototype.scrollTo;
+</script>
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/prototype-1.7.js?v=npJElBnrEO6W&amp;l=schinese&amp;_cdn=fastly"></script>
+<script type="text/javascript">
+	Array.from = __PrototypePreserve[0] || Array.from;
+	Array.prototype.filter = __PrototypePreserve[1] || Array.prototype.filter;
+	Array.prototype.flatMap = __PrototypePreserve[2] || Array.prototype.flatMap;
+	Array.prototype.find = __PrototypePreserve[3] || Array.prototype.find;
+	Array.prototype.some = __PrototypePreserve[4] || Array.prototype.some;
+	Function.prototype.bind = __PrototypePreserve[5] || Function.prototype.bind;
+	HTMLElement.prototype.scrollTo = __PrototypePreserve[6] || HTMLElement.prototype.scrollTo;
+</script>
+<script type="text/javascript">
+	var __ScriptaculousPreserve=[];
+	__ScriptaculousPreserve[0] = Array.from;
+	__ScriptaculousPreserve[1] = Function.prototype.bind;
+	__ScriptaculousPreserve[2] = HTMLElement.prototype.scrollTo;
+</script>
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/scriptaculous/_combined.js?v=lz_99vci25ux&amp;l=schinese&amp;_cdn=fastly&amp;load=effects,controls,slider"></script>
+<script type="text/javascript">
+	Array.from = __ScriptaculousPreserve[0] || Array.from;
+	Function.prototype.bind = __ScriptaculousPreserve[1] || Function.prototype.bind;
+	HTMLElement.prototype.scrollTo = __ScriptaculousPreserve[2] || HTMLElement.prototype.scrollTo;
+</script>
+<script type="text/javascript">Object.seal && [ Object, Array, String, Number ].map( function( builtin ) { Object.seal( builtin.prototype ); } );</script>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function(event) {
+				$J.data( document, 'x_readytime', new Date().getTime() );
+				$J.data( document, 'x_oldref', GetNavCookie() );
+				SetupTooltips( { tooltipCSSClass: 'store_tooltip'} );
+		});
+		</script>	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/hwsurvey.js?v=fM-GIUox9zCH&amp;l=schinese&amp;_cdn=fastly"></script>
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/flot-0.8/jquery.flot.min.js?v=mSfqk1QKKgiz&amp;l=schinese&amp;_cdn=fastly"></script>
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/flot-0.8/jquery.flot.stack.min.js?v=Nu_CW9IREurT&amp;l=schinese&amp;_cdn=fastly"></script>
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/flot-0.8/jquery.flot.resize.min.js?v=MeIf0YViALgL&amp;l=schinese&amp;_cdn=fastly"></script>
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/shared/javascript/flot-0.8/excanvas.min.js?v=7p4_7hQnC3sn&amp;l=schinese&amp;_cdn=fastly"></script>
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/d3.v3.min.js?v=b9401346&amp;l=schinese&amp;_cdn=fastly"></script>
+	<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/topojson.v1.min.js?v=b9401346&amp;l=schinese&amp;_cdn=fastly"></script>
+<script language="javascript">
+
+	jQuery(function()
+	{
+		jQuery("<div class='chartooltip' id='charttooltip'></div>").css({
+			position: "absolute",
+			border: "1px solid #ffdddd",
+			display: "none",
+			padding: "2px",
+			"background-color": "white",
+			color: "black",
+			"font-size": "10px",
+			opacity: "1.0",
+		}).appendTo("body");
+	});
+
+function addEvent(el, ev, fn, useCapture)
+{
+	if(el.addEventListener)
+	{
+		el.addEventListener(ev, fn, useCapture);
+	}
+	else if(el.attachEvent)
+	{
+		var ret = el.attachEvent("on"+ev, fn);
+		return ret;
+	}
+	else
+	{
+		el["on"+ev] = fn;
+	}
+}
+function toggleDetailStats()
+{
+	thediv = document.getElementById("detailStats");
+	if(thediv.style.display == "block")
+	{
+		thediv.style.display = "none";
+	}
+	else
+	{
+		thediv.style.display = "block";
+	}
+}
+function checkToggleState()
+{
+	qs = location.search.substring(1, location.search.length);
+	if ( qs.indexOf( 'details=1' ) != -1 )
+	{
+		toggleDetailStats();
+	}
+}
+addEvent(window, "load", checkToggleState, false);
+</script>
+
+	<style type="text/css">
+
+		svg:not(:root) { overflow: hidden; }
+
+div.statsTop {
+	width:auto;
+	text-align:center;
+}
+
+
+.statsTop table {
+	margin-left:15px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:normal;
+	color:#787878;
+}
+.statsTop td {
+	padding-top:2px;
+	padding-bottom:3px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+}
+.statsTopHi {
+	font-weight:bold;
+}
+.statsTopSmall {
+	font-size:11px;
+}
+TABLE.statusGraph {
+	cell-spacing:0px;
+	cell-padding:0px;
+	height:4px;
+	margin:4px 0px 0px 0px;
+}
+TD.CurrentLoad {
+	background:#8BB9E0;
+	height:4px;
+}
+TD.AvailableBytesPerSecond {
+	background:#5B5B5B;
+}
+a#detailLink{
+	color:#8BB9E0;
+	font-size:13px;
+}
+.capsule {
+	width:611px;
+	margin-bottom:8px;
+	padding-top:14px;
+}
+.capsule a,.capsule a:visited, .capsule a:hover {
+	color:#8BB9E0;
+}
+a.filter_link, a:visited.filter_link {
+	color:#5B5B5B;
+}
+.capsuleRegionName {
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:4px;
+	padding-top:5px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.capsule_table td {
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+a.filter_link, a.filter_link:visited {
+	color:#5B5B5B;
+}
+.leftCol_4 > P {
+	color:#C5CAB6;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:1.1em;
+	font-weight:normal;
+	line-height:1.4em;
+	margin:10px 20px 15px 25px;
+	padding:0;
+	text-align:left;
+	text-decoration:none;
+}
+
+.statsOverview table td a {
+	font-size: 12px;
+}
+
+.background {
+	fill: #444;
+	pointer-events: all;
+}
+
+.pick-data {
+
+	cursor: pointer;
+	color: #aaa;
+}
+
+.pick-data-current {
+
+	cursor: pointer;
+	color: #b4da45;
+}
+
+.pick-data:hover {
+	color: white;
+
+}
+
+.pick-view {
+	cursor: pointer;
+	color: #aaa
+}
+
+.pick-view-current {
+	pointer-events:none;
+	color: white;
+}
+
+.land {
+	fill: #222;
+}
+
+#interactiveMap path {
+	fill: #222;
+	stroke: #aaa;
+	stroke-width: .2px;
+}
+
+.hidden { display: none; }
+.unhidden { display: block; }
+
+.loading {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+
+</style>
+
+</head>
+
+<body class="v6">
+<!-- Header -->
+
+<div id="application_config" style="display: none;"  data-config="{&quot;EUNIVERSE&quot;:1,&quot;WEB_UNIVERSE&quot;:&quot;public&quot;,&quot;LANGUAGE&quot;:&quot;schinese&quot;,&quot;COUNTRY&quot;:&quot;JP&quot;,&quot;MEDIA_CDN_COMMUNITY_URL&quot;:&quot;https:\/\/cdn.fastly.steamstatic.com\/steamcommunity\/public\/&quot;,&quot;MEDIA_CDN_URL&quot;:&quot;https:\/\/cdn.fastly.steamstatic.com\/&quot;,&quot;VIDEO_CDN_URL&quot;:&quot;https:\/\/video.fastly.steamstatic.com\/&quot;,&quot;COMMUNITY_CDN_URL&quot;:&quot;https:\/\/community.fastly.steamstatic.com\/&quot;,&quot;COMMUNITY_CDN_ASSET_URL&quot;:&quot;https:\/\/cdn.fastly.steamstatic.com\/steamcommunity\/public\/assets\/&quot;,&quot;STORE_CDN_URL&quot;:&quot;https:\/\/store.fastly.steamstatic.com\/&quot;,&quot;PUBLIC_SHARED_URL&quot;:&quot;https:\/\/store.fastly.steamstatic.com\/public\/shared\/&quot;,&quot;COMMUNITY_BASE_URL&quot;:&quot;https:\/\/steamcommunity.com\/&quot;,&quot;CHAT_BASE_URL&quot;:&quot;https:\/\/steamcommunity.com\/&quot;,&quot;STORE_BASE_URL&quot;:&quot;https:\/\/store.steampowered.com\/&quot;,&quot;STORE_CHECKOUT_BASE_URL&quot;:&quot;https:\/\/checkout.steampowered.com\/&quot;,&quot;IMG_URL&quot;:&quot;https:\/\/store.fastly.steamstatic.com\/public\/images\/&quot;,&quot;STEAMTV_BASE_URL&quot;:&quot;https:\/\/steam.tv\/&quot;,&quot;HELP_BASE_URL&quot;:&quot;https:\/\/help.steampowered.com\/&quot;,&quot;PARTNER_BASE_URL&quot;:&quot;https:\/\/partner.steamgames.com\/&quot;,&quot;STATS_BASE_URL&quot;:&quot;https:\/\/partner.steampowered.com\/&quot;,&quot;INTERNAL_STATS_BASE_URL&quot;:&quot;https:\/\/steamstats.valve.org\/&quot;,&quot;IN_CLIENT&quot;:false,&quot;USE_POPUPS&quot;:false,&quot;STORE_ICON_BASE_URL&quot;:&quot;https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/&quot;,&quot;STORE_ITEM_BASE_URL&quot;:&quot;https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/&quot;,&quot;WEBAPI_BASE_URL&quot;:&quot;https:\/\/api.steampowered.com\/&quot;,&quot;TOKEN_URL&quot;:&quot;https:\/\/store.steampowered.com\/\/chat\/clientjstoken&quot;,&quot;BUILD_TIMESTAMP&quot;:1733791432,&quot;PAGE_TIMESTAMP&quot;:1733816712,&quot;IN_TENFOOT&quot;:false,&quot;IN_GAMEPADUI&quot;:false,&quot;IN_CHROMEOS&quot;:false,&quot;IN_MOBILE_WEBVIEW&quot;:false,&quot;PLATFORM&quot;:&quot;windows&quot;,&quot;BASE_URL_STORE_CDN_ASSETS&quot;:&quot;https:\/\/cdn.fastly.steamstatic.com\/store\/&quot;,&quot;EREALM&quot;:1,&quot;LOGIN_BASE_URL&quot;:&quot;https:\/\/login.steampowered.com\/&quot;,&quot;AVATAR_BASE_URL&quot;:&quot;https:\/\/avatars.fastly.steamstatic.com\/&quot;,&quot;FROM_WEB&quot;:true,&quot;WEBSITE_ID&quot;:&quot;Store&quot;,&quot;BASE_URL_SHARED_CDN&quot;:&quot;https:\/\/shared.fastly.steamstatic.com\/&quot;,&quot;CLAN_CDN_ASSET_URL&quot;:&quot;https:\/\/clan.fastly.steamstatic.com\/&quot;,&quot;SNR&quot;:&quot;1_stats_content_&quot;}" data-userinfo="{&quot;logged_in&quot;:false,&quot;country_code&quot;:&quot;JP&quot;}" data-broadcastuser="{&quot;success&quot;:1,&quot;bHideStoreBroadcast&quot;:false}" data-store_user_config="{&quot;webapi_token&quot;:&quot;&quot;,&quot;shoppingcart&quot;:null,&quot;originating_navdata&quot;:{&quot;domain&quot;:&quot;store.steampowered.com&quot;,&quot;controller&quot;:&quot;store-navigation&quot;,&quot;method&quot;:&quot;&quot;,&quot;submethod&quot;:&quot;&quot;,&quot;feature&quot;:&quot;&quot;,&quot;depth&quot;:0,&quot;countrycode&quot;:&quot;&quot;,&quot;webkey&quot;:null,&quot;is_client&quot;:false,&quot;curator_data&quot;:null,&quot;is_likely_bot&quot;:false,&quot;is_utm&quot;:false}}"></div><div id="application_root"></div><script>window.g_wapit="";</script><link href="https://store.fastly.steamstatic.com/public/css/applications/store/main.css?v=soCB1ab5orw4&amp;l=schinese&amp;_cdn=fastly" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/applications/store/manifest.js?v=y5CIWBCfipVK&amp;l=schinese&amp;_cdn=fastly"></script>
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/applications/store/libraries~b28b7af69.js?v=467Z5yVtIp0f&amp;l=schinese&amp;_cdn=fastly"></script>
+<script type="text/javascript" src="https://store.fastly.steamstatic.com/public/javascript/applications/store/main.js?v=8aRacq9llhAy&amp;l=schinese&amp;_cdn=fastly"></script>
+<div role="banner" id="global_header" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}">
+	<div class="content">
+		<div class="logo">
+			<span id="logo_holder">
+									<a href="https://store.steampowered.com/?snr=1_stats_content__global-header" aria-label="Steam 主页链接">
+						<img src="https://store.fastly.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" width="176" height="44" alt="Steam 主页链接">
+					</a>
+							</span>
+		</div>
+
+			<div role="navigation" class="supernav_container" aria-label="全局菜单">
+								<a class="menuitem supernav supernav_active" href="https://store.steampowered.com/?snr=1_stats_content__global-header" data-tooltip-type="selector" data-tooltip-content=".submenu_Store">
+				商店			</a>
+			<div class="submenu_Store" style="display: none;" data-submenuid="Store">
+														<a class="submenuitem" href="https://store.steampowered.com/?snr=1_stats_content__global-header">
+						主页											</a>
+														<a class="submenuitem" href="https://store.steampowered.com/explore/?snr=1_stats_content__global-header">
+						探索队列											</a>
+														<a class="submenuitem" href="https://steamcommunity.com/my/wishlist/">
+						愿望单											</a>
+														<a class="submenuitem" href="https://store.steampowered.com/points/shop/?snr=1_stats_content__global-header">
+						点数商店											</a>
+														<a class="submenuitem" href="https://store.steampowered.com/news/?snr=1_stats_content__global-header">
+						新闻											</a>
+														<a class="submenuitem" href="https://store.steampowered.com/stats/?snr=1_stats_content__global-header">
+						统计数据											</a>
+							</div>
+										<a class="menuitem supernav" href="https://steamcommunity.com/" data-tooltip-type="selector" data-tooltip-content=".submenu_Community">
+				社区			</a>
+			<div class="submenu_Community" style="display: none;" data-submenuid="Community">
+														<a class="submenuitem" href="https://steamcommunity.com/">
+						主页											</a>
+														<a class="submenuitem" href="https://steamcommunity.com/discussions/">
+						讨论											</a>
+														<a class="submenuitem" href="https://steamcommunity.com/workshop/">
+						创意工坊											</a>
+														<a class="submenuitem" href="https://steamcommunity.com/market/">
+						市场											</a>
+														<a class="submenuitem" href="https://steamcommunity.com/?subsection=broadcasts">
+						实况直播											</a>
+							</div>
+										<a class="menuitem " href="https://store.steampowered.com/about/?snr=1_stats_content__global-header">
+				关于			</a>
+										<a class="menuitem " href="https://help.steampowered.com/zh-cn/">
+				客服			</a>
+				</div>
+	<script type="text/javascript">
+		jQuery(function($) {
+			$('#global_header .supernav').v_tooltip({'location':'bottom', 'destroyWhenDone': false, 'tooltipClass': 'supernav_content', 'offsetY':-6, 'offsetX': 1, 'horizontalSnap': 4, 'tooltipParent': '#global_header .supernav_container', 'correctForScreenSize': false});
+		});
+	</script>
+
+		<div id="global_actions">
+			<div role="navigation" id="global_action_menu" aria-label="帐户菜单">
+									<a class="header_installsteam_btn header_installsteam_btn_green" href="https://store.steampowered.com/about/?snr=1_stats_content__global-header">
+						<div class="header_installsteam_btn_content">
+							安装 Steam						</div>
+					</a>
+				
+				
+									<a class="global_action_link" href="https://store.steampowered.com/login/?redir=stats%2Fcontent%2F&redir_ssl=1&snr=1_stats_content__global-header">登录</a>
+											&nbsp;|&nbsp;
+						<span class="pulldown global_action_link" id="language_pulldown" onclick="ShowMenu( this, 'language_dropdown', 'right' );">语言</span>
+						<div class="popup_block_new" id="language_dropdown" style="display: none;">
+							<div class="popup_body popup_menu">
+																																															<a class="popup_menu_item tight" href="?l=tchinese" onclick="ChangeLanguage( 'tchinese' ); return false;">繁體中文（繁体中文）</a>
+																													<a class="popup_menu_item tight" href="?l=japanese" onclick="ChangeLanguage( 'japanese' ); return false;">日本語（日语）</a>
+																													<a class="popup_menu_item tight" href="?l=koreana" onclick="ChangeLanguage( 'koreana' ); return false;">한국어（韩语）</a>
+																													<a class="popup_menu_item tight" href="?l=thai" onclick="ChangeLanguage( 'thai' ); return false;">ไทย（泰语）</a>
+																													<a class="popup_menu_item tight" href="?l=bulgarian" onclick="ChangeLanguage( 'bulgarian' ); return false;">български（保加利亚语）</a>
+																													<a class="popup_menu_item tight" href="?l=czech" onclick="ChangeLanguage( 'czech' ); return false;">Čeština（捷克语）</a>
+																													<a class="popup_menu_item tight" href="?l=danish" onclick="ChangeLanguage( 'danish' ); return false;">Dansk（丹麦语）</a>
+																													<a class="popup_menu_item tight" href="?l=german" onclick="ChangeLanguage( 'german' ); return false;">Deutsch（德语）</a>
+																													<a class="popup_menu_item tight" href="?l=english" onclick="ChangeLanguage( 'english' ); return false;">English（英语）</a>
+																													<a class="popup_menu_item tight" href="?l=spanish" onclick="ChangeLanguage( 'spanish' ); return false;">Español-España（西班牙语 - 西班牙）</a>
+																													<a class="popup_menu_item tight" href="?l=latam" onclick="ChangeLanguage( 'latam' ); return false;">Español - Latinoamérica（西班牙语 - 拉丁美洲）</a>
+																													<a class="popup_menu_item tight" href="?l=greek" onclick="ChangeLanguage( 'greek' ); return false;">Ελληνικά（希腊语）</a>
+																													<a class="popup_menu_item tight" href="?l=french" onclick="ChangeLanguage( 'french' ); return false;">Français（法语）</a>
+																													<a class="popup_menu_item tight" href="?l=italian" onclick="ChangeLanguage( 'italian' ); return false;">Italiano（意大利语）</a>
+																													<a class="popup_menu_item tight" href="?l=indonesian" onclick="ChangeLanguage( 'indonesian' ); return false;">Bahasa Indonesia（印度尼西亚语）</a>
+																													<a class="popup_menu_item tight" href="?l=hungarian" onclick="ChangeLanguage( 'hungarian' ); return false;">Magyar（匈牙利语）</a>
+																													<a class="popup_menu_item tight" href="?l=dutch" onclick="ChangeLanguage( 'dutch' ); return false;">Nederlands（荷兰语）</a>
+																													<a class="popup_menu_item tight" href="?l=norwegian" onclick="ChangeLanguage( 'norwegian' ); return false;">Norsk（挪威语）</a>
+																													<a class="popup_menu_item tight" href="?l=polish" onclick="ChangeLanguage( 'polish' ); return false;">Polski（波兰语）</a>
+																													<a class="popup_menu_item tight" href="?l=portuguese" onclick="ChangeLanguage( 'portuguese' ); return false;">Português（葡萄牙语 - 葡萄牙）</a>
+																													<a class="popup_menu_item tight" href="?l=brazilian" onclick="ChangeLanguage( 'brazilian' ); return false;">Português-Brasil（葡萄牙语 - 巴西）</a>
+																													<a class="popup_menu_item tight" href="?l=romanian" onclick="ChangeLanguage( 'romanian' ); return false;">Română（罗马尼亚语）</a>
+																													<a class="popup_menu_item tight" href="?l=russian" onclick="ChangeLanguage( 'russian' ); return false;">Русский（俄语）</a>
+																													<a class="popup_menu_item tight" href="?l=finnish" onclick="ChangeLanguage( 'finnish' ); return false;">Suomi（芬兰语）</a>
+																													<a class="popup_menu_item tight" href="?l=swedish" onclick="ChangeLanguage( 'swedish' ); return false;">Svenska（瑞典语）</a>
+																													<a class="popup_menu_item tight" href="?l=turkish" onclick="ChangeLanguage( 'turkish' ); return false;">Türkçe（土耳其语）</a>
+																													<a class="popup_menu_item tight" href="?l=vietnamese" onclick="ChangeLanguage( 'vietnamese' ); return false;">Tiếng Việt（越南语）</a>
+																													<a class="popup_menu_item tight" href="?l=ukrainian" onclick="ChangeLanguage( 'ukrainian' ); return false;">Українська（乌克兰语）</a>
+																									<a class="popup_menu_item tight" href="https://www.valvesoftware.com/en/contact?contact-person=Translation%20Team%20Feedback" target="_blank">报告翻译问题</a>
+							</div>
+						</div>
+												</div>
+					</div>
+			</div>
+</div>
+
+<div class="page_header_ctn search">
+
+	
+	
+    	    <div id="store_header" role="navigation" aria-label="商店菜单" class="">
+		<div class="content">
+			<div id="store_controls">
+				<div class="cart_status_flex" id="cart_status_data">
+															
+													<div  data-featuretarget="shoppingcart-count-widget" data-props="{&quot;count&quot;:0}"></div>															</div>
+			</div>
+			
+												<div id="store_nav_area">
+					<div class="store_nav_leftcap"></div>
+					<div class="store_nav_bg">
+						<div class="store_nav" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}" >
+
+						
+							<div class="tab  flyout_tab " id="foryou_tab"
+								 data-flyout="foryou_flyout" data-flyout-align="left" data-flyout-valign="bottom" data-flyout-delay="300"
+								data-panel="{&quot;focusable&quot;:true}" >
+								<span class="pulldown">
+									<a class="pulldown_desktop" href="https://store.steampowered.com/?snr=1_stats_content__12">您的商店</a>
+									<a class="pulldown_mobile" href="#">您的商店</a>
+									<span></span>
+								</span>
+							</div>
+							<div class="popup_block_new flyout_tab_flyout responsive_slidedown" id="foryou_flyout" style="display: none;">
+								<div class="popup_body popup_menu popup_menu_browse">
+									<a class="popup_menu_item" href="https://store.steampowered.com/?snr=1_stats_content__12">
+										主页									</a>
+                                                                            <a class="popup_menu_item" href="https://store.steampowered.com/communityrecommendations/?snr=1_stats_content__12">
+                                            社区推荐                                        </a>
+                                    									<a class="popup_menu_item" href="https://store.steampowered.com/recommended/?snr=1_stats_content__12">
+										最近查看过									</a>
+                                                                            <a class="popup_menu_item" href="https://store.steampowered.com/curators/?snr=1_stats_content__12">
+                                            Steam 鉴赏家                                        </a>
+                                    								</div>
+							</div>
+						
+														<div class="store_labs_new"></div>
+                            <div class="tab  flyout_tab " id="noteworthy_tab"
+								 data-flyout="noteworthy_flyout" data-flyout-align="left" data-flyout-valign="bottom" data-flyout-delay="300" data-panel="{&quot;focusable&quot;:true}" >
+								<span class="pulldown">
+									<a href="javascript:void(0);" class="pulldown_desktop">新鲜推荐</a>
+									<a href="javascript:void(0);" class="pulldown_mobile">新鲜推荐</a>
+									<span></span>
+								</span>
+                            </div>
+                            <div class="popup_block_new flyout_tab_flyout responsive_slidedown" id="noteworthy_flyout" style="display: none;">
+								<div class="popup_body popup_menu_twocol_new">
+									<div class="popup_menu popup_menu_browse" data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}" >
+										<div class="popup_menu_subheader responsive_hidden">最热门</div>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/charts/topselling/?snr=1_stats_content__12">
+											热销商品										</a>
+										<a class="popup_menu_item" href="https://store.steampowered.com/charts/mostplayed/?snr=1_stats_content__12">
+											最常玩的游戏										</a>
+
+										<div class="category_hr responsive_hidden"></div>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/explore/new/?snr=1_stats_content__12">
+											新品										</a>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/explore/upcoming/?snr=1_stats_content__12">
+											即将推出										</a>
+
+										<div class="popup_menu_subheader responsive_hidden">新闻与更新</div>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/newshub/?snr=1_stats_content__12">
+											最近更新										</a>
+
+									</div>
+
+									<div class="popup_menu popup_menu_browse leftborder" data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}" >
+										<div class="popup_menu_subheader responsive_hidden">促销与活动</div>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/specials/?snr=1_stats_content__12">
+											特别优惠										</a>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/news/collection/sales/?snr=1_stats_content__12">
+											特卖活动										</a>
+
+										<div class="category_hr responsive_hidden"></div>
+
+                                        <a class="popup_menu_item" href="https://store.steampowered.com/yearinreview?src=7&snr=1_stats_content__12">
+											Steam 年度回顾											                                        </a>
+
+                                        <a class="popup_menu_item" href="https://store.steampowered.com/sale/nextfest?snr=1_stats_content__12">
+											Steam 新品节										</a>
+
+										<a class="popup_menu_item" href="https://store.steampowered.com/sale/steam_awards?snr=1_stats_content__12">
+											Steam 大奖										</a>
+
+
+									</div>
+
+									<!--
+                                    <div class="popup_menu_subheader">特卖活动
+									</div>
+
+                                    <a class="popup_menu_item" href="https://store.steampowered.com/search/?specials=1&snr=1_stats_content__12">
+                                        Weekly Specials
+                                    </a>
+                                    <a class="popup_menu_item" href="https://store.steampowered.com/sale/vr_specials/?snr=1_stats_content__12">
+                                        Weekly VR Specials
+                                    </a>
+                                    -->
+                                </div>
+                            </div>
+
+															<div class="tab  flyout_tab " id="genre_tab"
+									 data-flyout="genre_flyout" data-flyout-align="left" data-flyout-valign="bottom" data-flyout-align-to-element="foryou_tab" data-flyout-delay="300"
+									data-panel="{&quot;focusable&quot;:true}" >
+									<span class="pulldown">
+										<a class="pulldown_desktop" href="javascript:void(0);">类别</a>
+										<a class="pulldown_mobile" href="javascript:void(0);">类别</a>
+										<span></span>
+									</span>
+								</div>
+								<div class="popup_block_new flyout_tab_flyout responsive_slidedown" id="genre_flyout" style="display: none;">
+									<div class="popup_body popup_menu_twocol_new">
+										<div class="popup_menu popup_menu_browse" data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}" >
+
+										<div class="popup_menu_subheader responsive_hidden">特别栏目</div>
+																																																																							<a class="popup_menu_item" href="https://store.steampowered.com/genre/Free%20to%20Play/?snr=1_stats_content__12">
+														免费开玩													</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						<a class="popup_menu_item" href="https://store.steampowered.com/demos/?snr=1_stats_content__12">
+														<span>试玩</span>
+													</a>
+																										<a class="popup_menu_item" href="https://store.steampowered.com/genre/Early%20Access/?snr=1_stats_content__12">
+														抢先体验													</a>
+																																																																																																																																																																																																																																																																																																												<div class="category_hr responsive_hidden"></div>
+
+																							<a class="popup_menu_item" href="https://store.steampowered.com/steamdeck/?snr=1_stats_content__category-menu">
+													<span>Steam Deck</span>
+												</a>
+
+												<a class="popup_menu_item" href="https://store.steampowered.com/greatondeck/?snr=1_stats_content__category-menu">
+													<span>非常适合 Deck</span>
+												</a>
+
+												<div class="category_hr responsive_hidden"></div>
+
+												<a class="popup_menu_item" href="https://store.steampowered.com/controller/?snr=1_stats_content__12">
+													<span>支持控制器</span>
+												</a>
+
+												<a class="popup_menu_item" href="https://store.steampowered.com/remoteplay_hub/?snr=1_stats_content__12">
+													<span>远程畅玩</span>
+												</a>
+
+												<div class="category_hr responsive_hidden"></div>
+
+												<a class="popup_menu_item" href="https://store.steampowered.com/vr/?snr=1_stats_content__12">
+													<span>VR 作品</span>
+												</a>
+
+												<a class="popup_menu_item" href="https://store.steampowered.com/vrhardware/?snr=1_stats_content__12">
+													<span>VR 硬件</span>
+												</a>
+
+												<div class="category_hr responsive_hidden"></div>
+											
+
+
+                                            <a class="popup_menu_item" href="https://store.steampowered.com/software/?snr=1_stats_content__12">
+                                                软件											</a>
+
+											<a class="popup_menu_item" href="https://store.steampowered.com/soundtracks?snr=1_stats_content__12">
+												原声音轨											</a>
+
+											<div class="category_hr responsive_hidden"></div>
+
+																							<a class="popup_menu_item" href="https://store.steampowered.com/macos?snr=1_stats_content__12">
+													macOS												</a>
+												<a class="popup_menu_item" href="https://store.steampowered.com/linux?snr=1_stats_content__12">
+													SteamOS + Linux												</a>
+
+												<a class="popup_menu_item" href="https://store.steampowered.com/pccafe/?snr=1_stats_content__12">
+													<span>网吧游戏</span>
+												</a>
+
+																					</div>
+																					<div class="popup_menu popup_menu_browse leftborder" data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}">
+																								<div class="popup_menu_subheader reduced_vspace">
+													类型
+												</div>
+																																				<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="action">
+														动作													</div>
+																									<div class="popup_menu_subheader popup_genre_expand_header responsive_hidden" data-genre-group="action">
+														<a class="popup_menu_item" href="https://store.steampowered.com/category/action/?snr=1_stats_content__12">
+															动作														</a>
+													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="action">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/action_run_jump/?snr=1_stats_content__12">平台及奔跑</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/fighting_martial_arts/?snr=1_stats_content__12">格斗及武术</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/shmup/?snr=1_stats_content__12">清版射击</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/hack_and_slash/?snr=1_stats_content__12">砍杀</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/action_fps/?snr=1_stats_content__12">第一人称射击</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/action_tps/?snr=1_stats_content__12">第三人称射击</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/arcade_rhythm/?snr=1_stats_content__12">街机及节奏</a>
+																										</div>
+																									<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="adventure">
+														冒险													</div>
+																									<div class="popup_menu_subheader popup_genre_expand_header responsive_hidden" data-genre-group="adventure">
+														<a class="popup_menu_item" href="https://store.steampowered.com/category/adventure/?snr=1_stats_content__12">
+															冒险														</a>
+													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="adventure">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/casual/?snr=1_stats_content__12">休闲</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/adventure_rpg/?snr=1_stats_content__12">冒险角色扮演</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/story_rich/?snr=1_stats_content__12">剧情丰富</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/metroidvania/?snr=1_stats_content__12">类银河战士恶魔城</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/visual_novel/?snr=1_stats_content__12">视觉小说</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/puzzle_matching/?snr=1_stats_content__12">解谜</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/hidden_object/?snr=1_stats_content__12">隐藏物体</a>
+																										</div>
+												</div>											<div class="popup_menu popup_menu_browse " data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}">
+																								<div class="popup_menu_subheader reduced_vspace responsive_hidden">
+													<br>
+												</div>
+																																				<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="rpg">
+														角色扮演													</div>
+																									<div class="popup_menu_subheader popup_genre_expand_header responsive_hidden" data-genre-group="rpg">
+														<a class="popup_menu_item" href="https://store.steampowered.com/category/rpg/?snr=1_stats_content__12">
+															角色扮演														</a>
+													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="rpg">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/adventure_rpg/?snr=1_stats_content__12">冒险角色扮演</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/rpg_action/?snr=1_stats_content__12">动作角色扮演</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/rpg_turn_based/?snr=1_stats_content__12">回合制</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/rpg_party_based/?snr=1_stats_content__12">团队制</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/rpg_jrpg/?snr=1_stats_content__12">日系角色扮演</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/rpg_strategy_tactics/?snr=1_stats_content__12">策略角色扮演</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/rogue_like_rogue_lite/?snr=1_stats_content__12">类 Rogue</a>
+																										</div>
+																									<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="simulation">
+														模拟													</div>
+																									<div class="popup_menu_subheader popup_genre_expand_header responsive_hidden" data-genre-group="simulation">
+														<a class="popup_menu_item" href="https://store.steampowered.com/category/simulation/?snr=1_stats_content__12">
+															模拟														</a>
+													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="simulation">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_farming_crafting/?snr=1_stats_content__12">农场及制作</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_space_flight/?snr=1_stats_content__12">太空及飞行</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_building_automation/?snr=1_stats_content__12">建造及自动化</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_dating/?snr=1_stats_content__12">恋爱</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_physics_sandbox/?snr=1_stats_content__12">沙盒及物理</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_hobby_sim/?snr=1_stats_content__12">爱好与工作</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sim_life/?snr=1_stats_content__12">生活及沉浸式</a>
+																										</div>
+												</div>											<div class="popup_menu popup_menu_browse " data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}">
+																								<div class="popup_menu_subheader reduced_vspace responsive_hidden">
+													<br>
+												</div>
+																																				<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="strategy">
+														策略													</div>
+																									<div class="popup_menu_subheader popup_genre_expand_header responsive_hidden" data-genre-group="strategy">
+														<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy/?snr=1_stats_content__12">
+															策略														</a>
+													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="strategy">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy_military/?snr=1_stats_content__12">军事</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy_card_board/?snr=1_stats_content__12">卡牌及桌游</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy_real_time/?snr=1_stats_content__12">即时战略</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy_turn_based/?snr=1_stats_content__12">回合制策略</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy_cities_settlements/?snr=1_stats_content__12">城市及定居点</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/tower_defense/?snr=1_stats_content__12">塔防</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/strategy_grand_4x/?snr=1_stats_content__12">大战略及 4X</a>
+																										</div>
+																									<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="sports_and_racing">
+														体育及竞速													</div>
+																									<div class="popup_menu_subheader popup_genre_expand_header responsive_hidden" data-genre-group="sports_and_racing">
+														<a class="popup_menu_item" href="https://store.steampowered.com/category/sports_and_racing/?snr=1_stats_content__12">
+															体育及竞速														</a>
+													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="sports_and_racing">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/sports_sim/?snr=1_stats_content__12">体育模拟</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sports_individual/?snr=1_stats_content__12">单人运动</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sports_team/?snr=1_stats_content__12">团队体育</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sports/?snr=1_stats_content__12">所有运动</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/racing/?snr=1_stats_content__12">竞速</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/racing_sim/?snr=1_stats_content__12">竞速模拟</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/sports_fishing_hunting/?snr=1_stats_content__12">钓鱼及狩猎</a>
+																										</div>
+												</div>											<div class="popup_menu popup_menu_browse leftborder" data-panel="{&quot;maintainY&quot;:true,&quot;flow-children&quot;:&quot;column&quot;}">
+																																				<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="themes">
+														主题													</div>
+																									<div class="popup_menu_subheader players popup_genre_expand_header responsive_hidden" >
+														主题													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="themes">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/anime/?snr=1_stats_content__12">动漫</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/space/?snr=1_stats_content__12">太空</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/exploration_open_world/?snr=1_stats_content__12">开放世界</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/horror/?snr=1_stats_content__12">恐怖</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/mystery_detective/?snr=1_stats_content__12">悬疑及推理</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/survival/?snr=1_stats_content__12">生存</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/science_fiction/?snr=1_stats_content__12">科幻及赛博朋克</a>
+														 <div class="spacer responsive_hidden"></div> 												</div>
+																									<div class="popup_menu_item popup_genre_expand_header nonresponsive_hidden" data-genre-group="social_and_players">
+														玩家支持													</div>
+																									<div class="popup_menu_subheader players popup_genre_expand_header responsive_hidden" >
+														玩家支持													</div>
+																								<div class="popup_genre_expand_content responsive_hidden" data-genre-group="social_and_players">
+																											<a class="popup_menu_item" href="https://store.steampowered.com/category/singleplayer/?snr=1_stats_content__12">单人</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/multiplayer_coop/?snr=1_stats_content__12">合作</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/multiplayer_online_competitive/?snr=1_stats_content__12">在线竞技</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/multiplayer/?snr=1_stats_content__12">多人</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/multiplayer_mmo/?snr=1_stats_content__12">大型多人在线</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/multiplayer_lan/?snr=1_stats_content__12">局域网</a>
+																												<a class="popup_menu_item" href="https://store.steampowered.com/category/multiplayer_local_party/?snr=1_stats_content__12">本地及派对</a>
+																										</div>
+												</div>									</div>
+								</div>
+							
+							                                                                <a class="tab  " href="https://store.steampowered.com/points/?snr=1_stats_content__12">
+                                    <span>点数商店</span>
+                                </a>
+                            
+                                                        <a class="tab  " href="https://store.steampowered.com/news/?snr=1_stats_content__12">
+								<span>新闻</span>
+							</a>
+
+                                                                                            <a class="tab  " href="https://store.steampowered.com/labs/?snr=1_stats_content__12">
+                                    <span>实验室</span>
+                                </a>
+                            
+															<div class="search_flex_spacer"></div>
+								<div class="search_area">
+									<div id="store_search">
+										<form id="searchform" name="searchform" method="get" action="https://store.steampowered.com/search/" onsubmit="return SearchSuggestCheckTerm(this);" role="search">
+											<input type="hidden" name="snr" value="1_stats_content__12" >
+											<div class="searchbox">
+												<input id="store_nav_search_term" name="term" type="search" class="default" placeholder="搜索" size="22" autocomplete="off" maxlength="64">
+												<a href="#" id="store_search_link" onclick="var $Form = $J(this).parents('form'); $Form.submit(); return false;" aria-label="搜索 Steam"><img src="https://store.fastly.steamstatic.com/public/images/blank.gif" alt=""></a>
+											</div>
+										</form>
+									</div>
+									<div id="searchterm_options" class="search_suggest popup_block_new" style="display: none;">
+										<div class="popup_body search_v2" style="border-top: none;">
+											<div id="search_suggestion_contents">
+											</div>
+										</div>
+									</div>
+								</div>
+							
+						</div>
+					</div>
+					<div class="store_nav_rightcap"></div>
+				</div>
+							</div>
+	</div>
+    
+				<script type="text/javascript">
+			$J( function() {
+				BindAutoFlyoutEvents();
+
+				var $Window = $J(window);
+				var $Header = $J('#store_header');
+				var $ResponsiveNavWindowShadeCtn = $J('#responsive_store_nav_ctn');
+				var $ResponsiveNavOverlay = $J('#responsive_store_nav_overlay');
+				var $ResponsiveNavOverlayCtn = $J('#responsive_store_nav_overlay_ctn');
+				var $ResponsiveNavOverlayBottom = $J('#responsive_store_nav_overlay_bottom');
+				var $HeaderWrapper;
+				$Window.on('Responsive_SmallScreenModeToggled.StoreMenu', function() {
+					var bUseSmallScreenMode = window.UseSmallScreenMode && window.UseSmallScreenMode();
+
+											if ( !$HeaderWrapper )
+							$HeaderWrapper = $Header.wrap( $J('<div/>', {'class': 'responsive_store_nav_ctn_spacer'} ) ).parent();
+
+						if ( bUseSmallScreenMode )
+							$ResponsiveNavWindowShadeCtn.append( $Header );
+						else
+							$HeaderWrapper.append( $Header );
+
+
+						if ( bUseSmallScreenMode )
+						{
+							$Header.css( 'visibility', 'hidden' );
+							$Header.show();
+
+							var nStartingScrollPosition = $J('#store_header').height();
+							if ( $Window.scrollTop() < nStartingScrollPosition )
+								$Window.scrollTop( nStartingScrollPosition );
+
+							$Header.css('visibility', 'visible');
+						}
+									} );
+
+				window.setTimeout( function() { $J(window).trigger('Responsive_SmallScreenModeToggled.StoreMenu'); }, 0 );
+
+										var g_rgUserPreferences = {
+							excluded_tags : [],
+							excluded_content_descriptors : [3,4]						};
+						
+													g_rgUserPreferences['use_store_query'] = 1;
+						
+						g_rgUserPreferences['use_search_spellcheck'] = 1;
+						g_rgUserPreferences['search_creators_and_tags'] = 1;
+
+						if( $J('#searchform').length > 0 )
+						{
+							// default search support where the web page includes the search edit control
+							EnableSearchSuggestions( $J('#searchform')[0].elements['term'], '1_stats_content_', 'JP', 1, 'schinese', g_rgUserPreferences, '26571022' );
+						}
+						else
+						{
+							// search support for the mobile client.  the mobile client has a native search edit control but relies on the web content to perform the query and show results
+													}
+				
+				// make genre categories expand/collapse on mobile
+				$J(document).on( 'click', '.popup_genre_expand_header', function ( event ) {
+					if ( !UseSmallScreenMode() )
+						return;
+
+					event.preventDefault();
+					var $Element = $J(this);
+					var $Target = $J('.popup_genre_expand_content[data-genre-group=' + $Element.data('genre-group') + ']' );
+					if ( $Element.data('group-expanded') )
+					{
+						$Target.slideUp();
+						$Element.data( 'group-expanded', false );
+					}
+					else
+					{
+						$Target.slideDown();
+						$Element.data( 'group-expanded', true );
+					}
+				});
+			} );
+		</script>
+	<script type="text/javascript">
+	var g_AccountID = 0;
+	var g_sessionID = "8f82c59deb4376652ba9e99a";
+	var g_ServerTime = 1733816712;
+	var g_bUseNewCartAPI = true;
+
+	$J( InitMiniprofileHovers( 'https%3A%2F%2Fstore.steampowered.com%2F' ) );
+
+	
+			GStoreItemData.AddNavParams({
+			__page_default: "1_stats_content_",
+			__page_default_obj: {"domain":"store.steampowered.com","controller":"stats","method":"content","submethod":"","feature":null,"depth":null,"countrycode":"JP","webkey":null,"is_client":false,"curator_data":null,"is_likely_bot":false,"is_utm":null},
+			__originating_obj: {"domain":"store.steampowered.com","controller":"store-navigation","method":"","submethod":"","feature":"","depth":0,"countrycode":"","webkey":null,"is_client":false,"curator_data":null,"is_likely_bot":false,"is_utm":false},
+			storemenu_recommendedtags: "1_stats_content__17"		});
+		GDynamicStore.Init( 0, false, "", {"primary_language":null,"secondary_languages":null,"platform_windows":null,"platform_mac":null,"platform_linux":null,"timestamp_updated":null,"hide_store_broadcast":null,"review_score_preference":null,"timestamp_content_descriptor_preferences_updated":null,"provide_deck_feedback":null,"additional_languages":null}, 'JP',
+			{"bNoDefaultDescriptors":false} );
+		GStoreItemData.SetCurrencyFormatter( function( nValueInCents, bWholeUnitsOnly ) { var fmt = function( nValueInCents, bWholeUnitsOnly ) {	var format = v_numberformat( nValueInCents / 100, bWholeUnitsOnly ? 0 : 2, ".", ",");format = format.replace( ".00", '' ); return format; };var strNegativeSymbol = '';return strNegativeSymbol + "\u00a5 " + fmt( nValueInCents, bWholeUnitsOnly );} );
+		GStoreItemData.SetCurrencyMinPriceIncrement( 100 );
+	</script>
+
+
+<div id="main" class="page_content">
+
+
+	<div id="main_content">
+		<!-- Main Content -->
+		<div class="breadcrumbs">
+			<a href="https://store.steampowered.com/stats/?snr=1_stats_content_">Steam 统计</a>
+			&gt;
+			Steam 下载统计		</div>
+		<h2 class="pageheader">Steam 下载统计</h2>
+		<br>
+
+		<div class="block">
+			<div class="block_header"><div>Steam 全球流量图 <span id="community_activity_note">（最近 7 天）</span></div></div>
+			<div class="block_content block_content_inner">
+								<p><a id="pickCurrentViewDynamic" onclick="onToggleCurrentView()"  class="pick-view-current" >交互图</a> | <a id="pickCurrentViewStatic" onclick="onToggleCurrentView()" class="pick-view">卫星视图</a></p>
+								<div id="interactiveMap" class = unhidden style="width: 900px; margin: 10px auto;">
+					<div id="heatmapArea" class="well" style="margin: 0px;width:900px;height:450px;cursor:pointer;position:relative;overflow:hidden">
+						<span class="loading">正在加载数据…</span>
+					</div>
+					<table>
+						<tr><td>选择数据：</td>
+							<td align="right" width="100"><a id="showTotalBytes" onclick="onToggleData('totalbytes', 'showTotalBytes')" class="pick-data-current">总计字节</a></td>
+							<td align="right" width="150"><a id="showAvgBW"" onclick="onToggleData('avgmbps', 'showAvgBW')" class="pick-data">平均下载速度</a> </td>
+						<tr></tr><tr><td><a id="showUSStates" onclick="onToggleStates()" class="pick-data">显示美国</a><br/></td></tr>
+					</table>
+					</br>
+					<div id="currentRegionStatsPlaceholder" class="unhidden">
+						<h3>点击任意地区查看详情</h3>
+					</div>
+					<div id="currentRegionStatsNoData" class="hidden">
+						<h2><span id=CurrentCountryName></span></h2>
+						无可用数据。					</div>
+					<div id="currentRegionStats" class="hidden">
+						<h2><span id=CurrentCountryName></span></h2>
+						<table>
+							<tr><td>总计字节:</td><td align="right" width="100"><span id="regionTotalBytesTable"></span></td></tr>
+							<tr><td>平均下载速度:</td><td align="right" width="100"><span id="regionAvgMbpsTable"></span></td></tr>
+							<tr><td>Steam 全球流量百分比:</td><td align="right" width="100"><span id="regionPercentBytesTable"></span></td></tr>
+						</table>
+						<br/>
+						<h2>互联网服务提供商（ISP）性能</h2>
+						<p class="body_text">下面显示的是 Steam 客户端基于 <span id=CurrentCountryNameASN></span> 最热门的互联网服务提供商的平均下载速度，按照传递到该网络的字节数排序。</p>
+						<br/>
+						<table id="TopNetworksTable">
+							<thead>
+								<th align="left" width="300">网络</th>
+								<th align="right" width="200">平均下载速度</th>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+
+				</div>
+				<div id="staticTrafficMap" class= hidden  style="width: 900px; margin: 10px auto;">
+					<a href="https://cdn.fastly.steamstatic.com/steam/publicstats/global_traffic.png?v=12-10-2024-07"><img src="https://cdn.fastly.steamstatic.com/steam/publicstats/global_traffic.png?v=12-10-2024-07" width=900/></a>
+					<br/><br/>每个点代表的是最近 24 小时内，来自至少一名 Steam 用户的 Steam 下载活动情况。				</div>
+			</div>
+		</div>
+		<div class="leftcol">
+			<div id="trafficMap" class="block" style=" ">
+				<div class="block_header"><div>Steam 下载使用带宽 <span id="community_activity_note">（最近 48 小时）</span></div></div>
+				<div class="block_content block_content_inner" style="background-color: #333333;">
+					<div style="width: 583px; margin: 0px auto;">
+
+						<div id="chartdiv1" style="width: 583px;height: 300px; " align="center"></div>
+
+						<div class="statsTop">
+							<table id="graphLegendTableHeader" style="margin-left:24px;" border="0" cellspacing="0" cellpadding="5">
+								<tr>
+									<td align="left">&nbsp;</td>
+									<td align="right">当前</td>
+									<td align="right">峰值</td>
+								</tr>
+								<tr  class="bottom">
+									<td align="left" width="150">总计使用带宽:</td>
+									<td align="right" width="100"><span id="graphLegendTotalGbps" class="statsTopHi"></span></td>
+									<td align="right" width="100"><span id="graphLegendPeakGbps" class="statsTopHi"></span></td>
+								</tr>
+							</table>
+							<table id="graphLegendTable" style="margin-left:24px;" border="0" cellspacing="0" cellpadding="5">
+								<tr></tr>
+							</table>
+						</div>
+					</div>
+				</div>
+	 		</div>
+	 	</div>
+		<div class="rightcol stats_links">
+			<div class="block">
+				<div class="block_header"><div>Steam 硬件和软件调查</div></div>
+				<div class="block_content block_content_inner">
+					<a class="linkbar" href="https://store.steampowered.com/hwsurvey">Steam 硬件和软件调查</a>
+				</div>
+			</div>
+			<div class="block">
+				<div class="block_header"><div>Steam 统计</div></div>
+				<div class="block_content block_content_inner">
+					<a class="linkbar" href="https://store.steampowered.com/stats/"></a>
+				</div>
+				<div class="block_content block_content_inner">
+					<a class="linkbar" href="https://store.steampowered.com/stats/support">Steam 客服统计数据</a>
+				</div>
+							</div>
+		</div>
+		<br clear="all" />
+	</div>
+
+</div>
+</div>
+<script language="javascript">
+
+jsonpFetch = function (url, func, callback) {
+	function create() {
+		jsonpFetch[func] = function(data) {
+			callback(data);
+			delete jsonpFetch[func];
+			script.remove();
+		};
+		return 'jsonpFetch.' + func;
+	}
+
+	var cb = create();
+	var	script = d3.select('head')
+			.append('script')
+			.attr('type', 'text/javascript')
+			.attr('src', url );
+
+};
+
+
+var rgCountryLoc = {"AFG":"\u963f\u5bcc\u6c57","ALA":"\u5965\u5170\u5c9b","ALB":"\u963f\u5c14\u5df4\u5c3c\u4e9a","DZA":"\u963f\u5c14\u53ca\u5229\u4e9a","ASM":"\u7f8e\u5c5e\u8428\u6469\u4e9a","AND":"\u5b89\u9053\u5c14","AGO":"\u5b89\u54e5\u62c9","AIA":"\u5b89\u572d\u62c9","ATA":"\u5357\u6781\u6d32","ATG":"\u5b89\u63d0\u74dc\u548c\u5df4\u5e03\u8fbe","ARG":"\u963f\u6839\u5ef7","ARM":"\u4e9a\u7f8e\u5c3c\u4e9a","ABW":"\u963f\u9c81\u5df4","AUS":"\u6fb3\u5927\u5229\u4e9a","AUT":"\u5965\u5730\u5229","AZE":"\u963f\u585e\u62dc\u7586","BHS":"\u5df4\u54c8\u9a6c","BHR":"\u5df4\u6797","BGD":"\u5b5f\u52a0\u62c9\u56fd","BRB":"\u5df4\u5df4\u591a\u65af","BLR":"\u767d\u4fc4\u7f57\u65af","BEL":"\u6bd4\u5229\u65f6","BLZ":"\u4f2f\u5229\u5179","BEN":"\u8d1d\u5b81","BMU":"\u767e\u6155\u5927","BTN":"\u4e0d\u4e39","BOL":"\u73bb\u5229\u7ef4\u4e9a","BES":"BQ","BIH":"\u6ce2\u65af\u5c3c\u4e9a\u548c\u9ed1\u585e\u54e5\u7ef4\u90a3","BWA":"\u535a\u8328\u74e6\u7eb3","BVT":"\u5e03\u97e6\u5c9b","BRA":"\u5df4\u897f","IOT":"\u82f1\u5c5e\u5370\u5ea6\u6d0b\u9886\u5730","BRN":"\u6587\u83b1\u8fbe\u9c81\u8428\u5170\u56fd","BGR":"\u4fdd\u52a0\u5229\u4e9a","BFA":"\u5e03\u57fa\u7eb3\u6cd5\u7d22","BDI":"\u5e03\u9686\u8fea","KHM":"\u67ec\u57d4\u5be8","CMR":"\u5580\u9ea6\u9686","CAN":"\u52a0\u62ff\u5927","CPV":"\u4f5b\u5f97\u89d2","CYM":"\u5f00\u66fc\u7fa4\u5c9b","CAF":"\u4e2d\u975e\u5171\u548c\u56fd","TCD":"\u4e4d\u5f97","CHL":"\u667a\u5229","CHN":"\u4e2d\u56fd","CXR":"\u5723\u8bde\u5c9b","CCK":"\u79d1\u79d1\u65af\uff08\u57fa\u6797\uff09\u7fa4\u5c9b","COL":"\u54e5\u4f26\u6bd4\u4e9a","COM":"\u79d1\u6469\u7f57","COG":"\u521a\u679c\u5171\u548c\u56fd","COD":"\u521a\u679c\u6c11\u4e3b\u5171\u548c\u56fd","COK":"\u5e93\u514b\u7fa4\u5c9b","CRI":"\u54e5\u65af\u8fbe\u9ece\u52a0","CIV":"\u79d1\u7279\u8fea\u74e6","HRV":"\u514b\u7f57\u5730\u4e9a","CUB":"CU","CUW":"CW","CYP":"\u585e\u6d66\u8def\u65af","CZE":"\u6377\u514b\u5171\u548c\u56fd","DNK":"\u4e39\u9ea6","DJI":"\u5409\u5e03\u63d0","DMA":"\u591a\u7c73\u5c3c\u514b","DOM":"\u591a\u7c73\u5c3c\u52a0\u5171\u548c\u56fd","TMP":"\u4e1c\u5e1d\u6c76","ECU":"\u5384\u74dc\u591a\u5c14","EGY":"\u57c3\u53ca","SLV":"\u8428\u5c14\u74e6\u591a","GNQ":"\u8d64\u9053\u51e0\u5185\u4e9a","ERI":"\u5384\u7acb\u7279\u91cc\u4e9a","EST":"\u7231\u6c99\u5c3c\u4e9a","ETH":"\u57c3\u585e\u4fc4\u6bd4\u4e9a","FLK":"\u798f\u514b\u5170\u7fa4\u5c9b\uff08\u9a6c\u5c14\u7ef4\u7eb3\u65af\uff09","FRO":"\u6cd5\u7f57\u7fa4\u5c9b","FJI":"\u6590\u6d4e","FIN":"\u82ac\u5170","FRA":"\u6cd5\u56fd","FXX":"FX","GUF":"\u6cd5\u5c5e\u572d\u4e9a\u90a3","PYF":"\u6cd5\u5c5e\u6ce2\u5229\u5c3c\u897f\u4e9a","ATF":"\u6cd5\u5c5e\u5357\u90e8\u9886\u5730","GAB":"\u52a0\u84ec","GMB":"\u5188\u6bd4\u4e9a","GEO":"\u683c\u9c81\u5409\u4e9a","DEU":"\u5fb7\u56fd","GHA":"\u52a0\u7eb3","GIB":"\u76f4\u5e03\u7f57\u9640","GRC":"\u5e0c\u814a","GRL":"\u683c\u9675\u5170","GRD":"\u683c\u6797\u7eb3\u8fbe","GLP":"\u74dc\u5fb7\u7f57\u666e","GUM":"\u5173\u5c9b","GTM":"\u5371\u5730\u9a6c\u62c9","GGY":"\u6839\u897f","GIN":"\u51e0\u5185\u4e9a","GNB":"\u51e0\u5185\u4e9a\u6bd4\u7ecd","GUY":"\u572d\u4e9a\u90a3","HTI":"\u6d77\u5730","HMD":"\u8d6b\u5fb7\u548c\u9ea6\u514b\u5510\u7eb3\u7fa4\u5c9b","VAT":"\u68b5\u8482\u5188\u57ce\u56fd","HND":"\u6d2a\u90fd\u62c9\u65af","HKG":"\u9999\u6e2f","HUN":"\u5308\u7259\u5229","ISL":"\u51b0\u5c9b","IND":"\u5370\u5ea6","IDN":"\u5370\u5ea6\u5c3c\u897f\u4e9a","IRN":"\u4f0a\u6717","IRQ":"\u4f0a\u62c9\u514b","IRL":"\u7231\u5c14\u5170","IMN":"\u9a6c\u6069\u5c9b","ISR":"\u4ee5\u8272\u5217","ITA":"\u610f\u5927\u5229","JAM":"\u7259\u4e70\u52a0","JPN":"\u65e5\u672c","JEY":"\u6cfd\u897f\u5c9b","JOR":"\u7ea6\u65e6","KAZ":"\u54c8\u8428\u514b\u65af\u5766","KEN":"\u80af\u5c3c\u4e9a","KIR":"\u57fa\u91cc\u5df4\u65af","PRK":"KP","KOR":"\u97e9\u56fd","KOS":"XD","KWT":"\u79d1\u5a01\u7279","KGZ":"\u5409\u5c14\u5409\u65af\u65af\u5766","LAO":"\u8001\u631d","LVA":"\u62c9\u8131\u7ef4\u4e9a","LBN":"\u9ece\u5df4\u5ae9","LSO":"\u83b1\u7d22\u6258","LBR":"\u5229\u6bd4\u91cc\u4e9a","LBY":"\u5229\u6bd4\u4e9a","LIE":"\u5217\u652f\u6566\u58eb\u767b","LTU":"\u7acb\u9676\u5b9b","LUX":"\u5362\u68ee\u5821","MAC":"\u6fb3\u95e8","MKD":"\u5317\u9a6c\u5176\u987f","MDG":"\u9a6c\u8fbe\u52a0\u65af\u52a0","MWI":"\u9a6c\u62c9\u7ef4","MYS":"\u9a6c\u6765\u897f\u4e9a","MDV":"\u9a6c\u5c14\u4ee3\u592b","MLI":"\u9a6c\u91cc","MLT":"\u9a6c\u8033\u4ed6","MHL":"\u9a6c\u7ecd\u5c14\u7fa4\u5c9b","MTQ":"\u9a6c\u63d0\u5c3c\u514b","MRT":"\u6bdb\u91cc\u5854\u5c3c\u4e9a","MUS":"\u6bdb\u91cc\u6c42\u65af","MYT":"\u9a6c\u7ea6\u7279","MEX":"\u58a8\u897f\u54e5","FSM":"\u5bc6\u514b\u7f57\u5c3c\u897f\u4e9a\u8054\u90a6","MDA":"\u6469\u5c14\u591a\u74e6","MCO":"\u6469\u7eb3\u54e5","MNG":"\u8499\u53e4","MNE":"\u9ed1\u5c71","MSR":"\u8499\u7279\u585e\u62c9\u7279","MAR":"\u6469\u6d1b\u54e5","MOZ":"\u83ab\u6851\u6bd4\u514b","MMR":"\u7f05\u7538","NAM":"\u7eb3\u7c73\u6bd4\u4e9a","NRU":"\u7459\u9c81","NPL":"\u5c3c\u6cca\u5c14","NLD":"\u8377\u5170","ANT":"\u8377\u5c5e\u5b89\u7684\u5217\u65af","NCL":"\u65b0\u5580\u91cc\u591a\u5c3c\u4e9a","NZL":"\u65b0\u897f\u5170","NIC":"\u5c3c\u52a0\u62c9\u74dc","NER":"\u5c3c\u65e5\u5c14","NGA":"\u5c3c\u65e5\u5229\u4e9a","NIU":"\u7ebd\u57c3","NFK":"\u8bfa\u798f\u514b\u5c9b","MNP":"\u5317\u9a6c\u91cc\u4e9a\u7eb3\u7fa4\u5c9b","NOR":"\u632a\u5a01","OMN":"\u963f\u66fc","PSE":"\u5df4\u52d2\u65af\u5766","PAK":"\u5df4\u57fa\u65af\u5766","PLW":"\u5e15\u52b3","PAN":"\u5df4\u62ff\u9a6c","PNG":"\u5df4\u5e03\u4e9a\u65b0\u51e0\u5185\u4e9a","PRY":"\u5df4\u62c9\u572d","PER":"\u79d8\u9c81","PHL":"\u83f2\u5f8b\u5bbe","PCN":"\u76ae\u7279\u51ef\u6069\u7fa4\u5c9b","POL":"\u6ce2\u5170","PRT":"\u8461\u8404\u7259","PRI":"\u6ce2\u591a\u9ece\u5404","QAT":"\u5361\u5854\u5c14","REU":"\u7559\u5c3c\u6c6a","ROU":"\u7f57\u9a6c\u5c3c\u4e9a","RUS":"\u4fc4\u7f57\u65af\u8054\u90a6","RWA":"\u5362\u65fa\u8fbe","BLM":"BL","SHN":"\u5723\u8d6b\u52d2\u62ff","KNA":"\u5723\u57fa\u8328\u548c\u5c3c\u7ef4\u65af","LCA":"\u5723\u5362\u897f\u4e9a","MAF":"MF","VCT":"\u5723\u6587\u68ee\u7279\u548c\u683c\u6797\u7eb3\u4e01\u65af","WSM":"\u8428\u6469\u4e9a","SMR":"\u5723\u9a6c\u529b\u8bfa","STP":"\u5723\u591a\u7f8e\u548c\u666e\u6797\u897f\u6bd4","SAU":"\u6c99\u7279\u963f\u62c9\u4f2f","SEN":"\u585e\u5185\u52a0\u5c14","SRB":"\u585e\u5c14\u7ef4\u4e9a","SYC":"\u585e\u820c\u5c14","SLE":"\u585e\u62c9\u5229\u6602","SGP":"\u65b0\u52a0\u5761","SXM":"SX","SVK":"\u65af\u6d1b\u4f10\u514b","SVN":"\u65af\u6d1b\u6587\u5c3c\u4e9a","SLB":"\u6240\u7f57\u95e8\u7fa4\u5c9b","SOM":"\u7d22\u9a6c\u91cc","ZAF":"\u5357\u975e","SSD":"SS","SGS":"\u5357\u4e54\u6cbb\u4e9a\u548c\u5357\u6851\u5a01\u5947\u7fa4\u5c9b","ESP":"\u897f\u73ed\u7259","LKA":"\u65af\u91cc\u5170\u5361","SPM":"\u5723\u76ae\u57c3\u5c14\u548c\u5bc6\u514b\u9686","SDN":"\u82cf\u4e39","SUR":"\u82cf\u91cc\u5357","SJM":"\u65af\u74e6\u5c14\u5df4\u548c\u626c\u9a6c\u5ef6","SWZ":"\u65af\u5a01\u58eb\u5170","SWE":"\u745e\u5178","CHE":"\u745e\u58eb","SYR":"\u53d9\u5229\u4e9a","TWN":"\u53f0\u6e7e","TJK":"\u5854\u5409\u514b\u65af\u5766","TZA":"\u5766\u6851\u5c3c\u4e9a\u8054\u5408\u5171\u548c\u56fd","THA":"\u6cf0\u56fd","TGO":"\u591a\u54e5","TKL":"\u6258\u514b\u52b3","TON":"\u6c64\u52a0","TTO":"\u7279\u7acb\u5c3c\u8fbe\u548c\u591a\u5df4\u54e5","TUN":"\u7a81\u5c3c\u65af","TUR":"\u571f\u8033\u5176","TKM":"\u571f\u5e93\u66fc\u65af\u5766","TCA":"\u7279\u514b\u65af\u548c\u51ef\u79d1\u65af\u7fa4\u5c9b","TUV":"\u56fe\u74e6\u5362","UGA":"\u4e4c\u5e72\u8fbe","UKR":"\u4e4c\u514b\u5170","ARE":"\u963f\u62c9\u4f2f\u8054\u5408\u914b\u957f\u56fd","GBR":"\u82f1\u56fd","USA":"\u7f8e\u56fd","UMI":"\u7f8e\u56fd\u672c\u571f\u5916\u5c0f\u5c9b\u5c7f","URY":"\u4e4c\u62c9\u572d","UZB":"\u4e4c\u5179\u522b\u514b\u65af\u5766","VUT":"\u74e6\u52aa\u963f\u56fe","VEN":"\u59d4\u5185\u745e\u62c9","VNM":"\u8d8a\u5357","VGB":"\u82f1\u5c5e\u7ef4\u5c14\u4eac\u7fa4\u5c9b","VIR":"\u7f8e\u5c5e\u7ef4\u5c14\u4eac\u7fa4\u5c9b","WLF":"\u74e6\u5229\u65af\u548c\u5bcc\u56fe\u7eb3","ESH":"\u897f\u6492\u54c8\u62c9","YEM":"\u4e5f\u95e8","ZMB":"\u8d5e\u6bd4\u4e9a","ZWE":"\u6d25\u5df4\u5e03\u97e6","XCS":"\u4e2d\u56fd"}
+function LocalizeCountry( d )
+{
+	if ( d.id in rgCountryLoc )
+		return rgCountryLoc[d.id];
+	else
+		return d.properties.name;
+}
+
+var blackGreenPalette =
+{
+	highlight: "#89adba",
+	gradient:[
+		'#222222',
+		'#343926',
+		'#46502a',
+		'#58672f',
+		'#6B7e33',
+		'#7d9537',
+		'#8fac3c',
+		'#a1c340',
+		'#b4da45' ]
+};
+
+var bOverridePalette = false;
+var currentPalette = blackGreenPalette;
+
+function onTogglePalette( palette )
+{
+	bOverridePalette = true;
+	currentPalette = palette;
+	redraw();
+}
+
+var quantize_direct = d3.scale.quantize()
+	.domain( [0, 1] ) // set this later
+	.range(d3.range(9).map(function(i) {
+		return currentPalette['gradient'][i];
+	}));
+
+var width = 900,
+	height = 450,
+	scale = 144;
+
+var projection = d3.geo.equirectangular()
+	.scale(scale)
+	.translate([width / 2, (height / 2)+1])
+	.precision(.4);
+
+var path = d3.geo.path()
+	.projection(projection);
+
+var svg = d3.select("#heatmapArea").append("svg")
+	.attr("width", width)
+	.attr("height", height);
+
+var zoom = d3.behavior.zoom()
+	.translate(projection.translate())
+	.scale(projection.scale())
+	.scaleExtent([scale, 8 * scale])
+	.on("zoom", zoomed);
+
+var mapStates = d3.map();
+
+var g = svg.append("g")
+	.call(zoom);
+
+g.append("rect")
+	.attr("class", "background")
+	.attr("width", width)
+	.attr("height", height);
+
+var formatPercent = d3.format(".0%");
+var formatPercentPointOne = d3.format(".1%");
+
+
+var showUSStates = false;
+function onToggleStates()
+{
+	showUSStates = !showUSStates;
+	if ( showUSStates )
+	{
+		d3.select("#showUSStates").text("Hide US States");
+	}
+	else
+	{
+		d3.select("#showUSStates").text("Show US States");
+	}
+
+	redraw();
+}
+
+function get_country_property( rgCountryData, index, property_name, bNoTransform )
+{
+	if ( rgCountryData[index] == undefined )
+		return 0;
+
+	var countryData = rgCountryData[index];
+	if ( bNoTransform )
+		return countryData[property_name];
+	else
+		return transformData( countryData, property_name );
+}
+
+function format_bps_string( bps )
+{
+	var prefix = d3.formatPrefix(bps);
+	return d3.round( prefix.scale(bps), 1 ) + " " + prefix.symbol + "bps";
+}
+
+function format_bytes_string( bytes )
+{
+	var prefix = d3.formatPrefix(bytes);
+	return d3.round( prefix.scale(bytes), 1 ) + " " + prefix.symbol + "B";
+}
+
+var currentFormat = format_bytes_string;
+
+var currentView = "interactive";
+
+function onToggleCurrentView()
+{
+	if ( currentView == "interactive" )
+	{
+		currentView = "static";
+		d3.select("#interactiveMap").attr( "class", "hidden" );
+		d3.select("#staticTrafficMap").attr( "class", "unhidden" );
+		d3.select("#pickCurrentViewStatic").attr( "class", "pick-view-current" );
+		d3.select("#pickCurrentViewDynamic").attr( "class", "pick-view" );
+	}
+	else
+	{
+		currentView = "interactive";
+		d3.select("#interactiveMap").attr( "class", "unhidden" );
+		d3.select("#staticTrafficMap").attr( "class", "hidden" );
+		d3.select("#pickCurrentViewStatic").attr( "class", "pick-view" );
+		d3.select("#pickCurrentViewDynamic").attr( "class", "pick-view-current" );
+	}
+}
+
+var totalGlobalBytes = 0;
+
+
+function OnRegionClicked( name, data, asndata, id )
+{
+	d3.select("#currentRegionStatsPlaceholder").attr( "class", "hidden" );
+	d3.selectAll("#CurrentCountryName").text(name);
+
+	if ( !(id in data ) )
+	{
+		d3.select("#currentRegionStatsNoData").attr( "class", "unhidden" );
+		d3.select("#currentRegionStats").attr( "class", "hidden" );
+	}
+	else
+	{
+		d3.select("#currentRegionStatsNoData").attr( "class", "hidden" );
+		d3.select("#currentRegionStats").attr( "class", "unhidden" );
+
+		d3.select("#CurrentCountryNameASN").text(name);
+		d3.select("#regionTotalBytesTable").text( format_bytes_string( get_country_property( data, id, 'totalbytes', true ) ) );
+		d3.select("#regionAvgMbpsTable").text( format_bps_string( get_country_property( data, id, 'avgmbps', true ) ) );
+		d3.select("#regionPercentBytesTable").text( formatPercentPointOne( get_country_property( data, id, 'totalbytes', true ) / totalGlobalBytes ) );
+
+		var idForNetworks = id;
+		if ( idForNetworks.indexOf('USA-') > -1 )
+		{
+			idForNetworks = 'USA';
+			d3.select("#CurrentCountryNameASN").text('United States of America');
+		}
+
+		table = d3.select("#TopNetworksTable");
+		tbody = table.selectAll("tbody");
+		var rows = tbody.selectAll("tr")
+			.data( asnData[idForNetworks] );
+
+		rows.enter().append("tr");
+
+		rows.exit().remove();
+
+		var columns = ["asname","avgmbps"];
+
+		// create a cell in each row for each column
+		var cells = rows.selectAll("td")
+			.data(function(row) {
+				return columns.map(function(column) {
+					var value = row[column];
+					if ( column == 'avgmbps' )
+					{
+						value = format_bps_string(value * 1e6);
+					}
+					return {column: column, value: value };
+				});
+			});
+
+
+		cells.enter().append("td")
+			.attr( "width", 100 )
+			.attr( "align", function( column, i ) {
+				if ( i > 0 )
+					return "right";
+				else
+					return "left";
+			} );
+		cells.exit().remove();
+
+		cells.text(function(d) { return d.value; });
+	}
+}
+
+var trafficData;
+var asnData;
+
+jsonpFetch( "https://cdn.fastly.steamstatic.com/steam/publicstats/download_traffic_per_country.jsonp?v=12-10-2024-07", "onTrafficData", onTrafficData );
+
+jsonpFetch( "https://cdn.fastly.steamstatic.com/steam/publicstats/contentserver_bandwidth_stacked.jsonp?v=12-10-2024-07", "onCSBandwidth", onCSBandwidth );
+function onCSBandwidth( data )
+{
+	jQuery.plot( jQuery( "#chartdiv1" ), JSON.parse( data[ 'json' ] ), {
+		series: {
+			stack: true,
+			lines: {
+				show: true,
+				fill: 1,
+				steps: false,
+				lineWidth: 0
+			},
+			bars: {
+				show: false,
+			},
+		},
+		legend: {
+			show: false
+		},
+		yaxis: {
+			show: true,
+			tickFormatter: (function (d) {
+				return d.toLocaleString() + " Gbps"
+			}),
+			tickColor: '#333333',
+			autoscaleMargin: 0.15,
+			font: {
+				size: 11,
+				lineHeight: 13,
+				style: "normal",
+				weight: "normal",
+				family: "Verdana, Arial, Helvetica, sans-serif",
+				variant: "normal",
+				color: "#787878"
+			}
+		},
+		xaxis: {
+			show: false
+		},
+		grid: {
+			hoverable: true,
+			clickable: false,
+			margin: 0,
+			borderWidth: 0,
+			axisMargin: 0,
+			minBorderMargin: 0,
+			backgroundColor: '#222222'
+		}
+	});
+
+	jQuery( "#chartdiv1" ).bind("plothover", function (event, pos, item) {
+		if (item) {
+			var x = (item.datapoint[1] - item.datapoint[2]).toFixed(0);
+			var d = new Date(item.datapoint[0]);
+			jQuery("#charttooltip").html( item.series.label + ', ' + d.toLocaleString() +', ' + x + ' Gbps'  )
+				.css({top: item.pageY-30, left: item.pageX-25})
+				.fadeIn(200);
+		} else {
+			jQuery("#charttooltip").hide();
+		}
+	} );
+
+
+	// fill in the legend
+
+	d3.select("#graphLegendTotalGbps").text( format_bps_string(data['current'] * 1e6) );
+	d3.select("#graphLegendPeakGbps").text( format_bps_string(data['peak'] * 1e6) );
+
+	table = d3.select("#graphLegendTable");
+	tbody = table.selectAll("tbody");
+	var rows = tbody.selectAll("tr")
+		.data( data['legend'] );
+
+	rows.enter().append("tr");
+
+	rows.exit().remove();
+
+	var columns = ["name","cur","max"];
+
+	// create a cell in each row for each column
+	var cells = rows.selectAll("td")
+		.data(function(row) {
+			return columns.map(function(column) {
+				var value = row[column];
+				if ( column == 'cur' || column == 'max' )
+				{
+					value = format_bps_string(value * 1e6);
+				}
+				var color = row['color'];
+				return {column: column, data: value, color: color };
+			});
+		});
+
+
+	cells.enter().append("td")
+		.attr( "width", function( d ) {
+			if (d.column != 'name' )
+			{
+				return "100";
+			}
+			else
+			{
+				return "150";
+			}
+		} )
+		.style( "color", function( d, i ) {
+			if ( i != 0 )
+			{
+				return '#' + d.color;
+			}
+		})
+		.attr( "align", function( column, i ) {
+			if ( i > 0 )
+				return "right";
+			else
+				return "left";
+		} );
+
+	cells.exit().remove();
+
+	cells.text(function(d)
+	{
+		return d.data;
+	});
+}
+
+function onTrafficData( trafficdata )
+{
+	trafficData = trafficdata;
+
+    for ( let key in trafficData )
+    {
+        if ( key.match("USA-") == null )
+            totalGlobalBytes += Number( trafficData[key]['totalbytes'] );
+    }
+
+	jsonpFetch( "https://cdn.fastly.steamstatic.com/steam/publicstats/top_asns_per_country.jsonp?v=12-10-2024-07", "onCountryASNData", onCountryASNData );
+}
+
+function onCountryASNData( asndata )
+{
+	asnData = asndata;
+	jsonpFetch( "https://store.fastly.steamstatic.com/public/data/us-state-names-tsv.jsonp", "onStateNames", onStateNames );
+}
+
+function onStateNames( tsv_data )
+{
+	var data = d3.tsv.parse( tsv_data );
+
+	data.forEach( function(d) {
+		mapStates.set(d.id, {code: d.code, name: d.name });
+	});
+
+	jsonpFetch("https://store.fastly.steamstatic.com/public/data/world-countries.jsonp", "onWorldCountries", function(world) {
+
+
+		feature = g.selectAll("#countries")
+			.data(world.features)
+			.enter().append("svg:path")
+			.attr("d", path)
+			.attr("id", function(d)
+			{
+				if (d.id == "USA" )
+				{
+					return "countries-USA";
+				}
+				else
+				{
+					return "countries";
+				}
+			})
+			.on("click", function(d, i)
+			{
+				OnRegionClicked( LocalizeCountry( d ), trafficData, asnData, d.id );
+			})
+			.on("mouseover", function(d, i ){
+				var cur = d3.select(this);
+				var previousColor = cur.style("fill");
+				cur.attr("prevcolor", previousColor )
+					.style( "fill", currentPalette['highlight'] )
+			})
+			.on("mouseout", function(d, i){
+				var cur = d3.select(this);
+				cur.style( "fill", cur.attr("prevcolor") );
+			})
+			.attr("class", function(d)
+			{
+				if (d.id == "USA")
+					return "land";
+				else
+					return "land";
+			})
+
+		feature.append("svg:title")
+			.text(function(d)
+			{
+				return LocalizeCountry( d ) + "\n" + format_bytes_string( +get_country_property( trafficData, asnData, d.id, 'totalbytes', true ) );
+			});
+
+		jsonpFetch("https://store.fastly.steamstatic.com/public/data/us.jsonp", "onUsData", function( us ) {
+
+			feature = g.selectAll("#states")
+				.data(topojson.feature(us, us.objects.states).features.filter( function(d,i){
+				// skip Puerto Rico, treating that as a country
+				return d.id != 72;
+			}) )
+				.enter()
+				.append("path")
+				.attr("class", 'land' )
+				.attr("d", path)
+				.attr("id", "states")
+				.on("click", function(d, i)
+				{
+					var name = "USA - " + mapStates.get(d.id)['name'];
+					var id = "USA-" + mapStates.get(d.id)['code'];
+					OnRegionClicked( name, trafficData, asnData, id );
+				})
+				.on("mouseover", function(d, i ){
+					var cur = d3.select(this);
+					var previousColor = cur.style("fill");
+					cur.attr("prevcolor", previousColor )
+						.style( "fill", currentPalette['highlight'] )
+				})
+				.on("mouseout", function(d, i){
+					var cur = d3.select(this);
+					cur.style( "fill", cur.attr("prevcolor") );
+				})
+
+			feature.append("svg:title")
+				.text(function(d) { return mapStates.get(d.id)['name'] + "\n" +
+					format_bytes_string( +get_country_property( trafficData, "USA-" + mapStates.get(d.id)['code'], 'totalbytes', true ) ); });
+
+			redraw();
+		});
+	});
+};
+
+var data_key = "totalbytes";
+
+function transformData( rgData, key )
+{
+	if ( key == "avgmbps" )
+		return Math.sqrt( +rgData[key] );
+	else if ( key == "totalbytes" )
+		return Math.sqrt( +rgData[key] );
+	else
+		return rgData[key];
+}
+
+function redraw()
+{
+	d3.select(".loading").attr("class", "hidden");
+	quantize_direct.range(d3.range(9).map(function(i) {
+		return currentPalette['gradient'][i];
+	}));
+
+	quantize_direct.domain( [
+		d3.min( d3.values(trafficData), function (d) {
+			if ( showUSStates && d[data_key] == trafficData["USA"][data_key] )
+			{
+				return null;
+			}
+			if ( d["totalbytes"] )
+				return transformData( d, data_key );
+			else
+				return null;
+		}),
+		d3.max( d3.values(trafficData), function (d) {
+			if ( showUSStates && d[data_key] == trafficData["USA"][data_key] )
+			{
+				return null;
+			}
+			if ( d["totalbytes"] )
+				return transformData( d, data_key );
+			else
+				return null;
+		}) ]
+	);
+
+	g.selectAll("#countries")
+		.transition()
+		.duration(500)
+		.style( "fill", function(d)
+		{
+			if ( get_country_property( trafficData, d.id, "totalbytes" ) )
+				return quantize_direct( get_country_property( trafficData, d.id, data_key ) )
+			else
+				return "#000";
+		})
+		.selectAll("title")
+		.text( function(d) { return LocalizeCountry( d ) + "\n" + currentFormat( +get_country_property( trafficData, d.id, data_key, true ) ); });
+
+	if ( showUSStates )
+	{
+		g.selectAll("#states")
+			.transition()
+			.duration(500)
+			.style( "fill", function(d)
+			{
+				if ( get_country_property( trafficData, "USA-" + mapStates.get(d.id)['code'], "totalbytes" ) )
+					return quantize_direct( get_country_property( trafficData, "USA-" + mapStates.get(d.id)['code'], data_key ) )
+				else
+					return "#000";
+			})
+			.attr("visibility", "visible")
+			.selectAll("title").text( function(d) { return mapStates.get(d.id)['name'] + "\n" +
+				currentFormat( +get_country_property( trafficData, "USA-" + mapStates.get(d.id)['code'], data_key, true ) ); });
+
+		g.selectAll("#countries-USA").attr("visibility", "hidden");
+	}
+	else
+	{
+		g.selectAll("#countries-USA")
+			.transition()
+			.duration(500)
+			.style( "fill", function(d)
+			{
+				if ( get_country_property( trafficData, d.id, "totalbytes" ) )
+					return quantize_direct( get_country_property( trafficData, d.id, data_key ) )
+				else
+					return "#000";
+			})
+			.attr("visibility", "visible")
+			.selectAll("title")
+			.text( function(d) { return LocalizeCountry( d ) + "\n" + currentFormat( +get_country_property( trafficData, d.id, data_key, true ) ); });
+
+		g.selectAll("#states").attr("visibility", "hidden");
+	}
+}
+
+function onToggleData( key, id )
+{
+	data_key = key;
+
+	d3.selectAll(".pick-data-current")
+		.attr("class", "pick-data");
+	d3.selectAll("#"+id)
+		.attr("class", "pick-data-current" );
+
+	if ( key == "avgmbps" )
+		currentFormat = format_bps_string;
+	else if ( key == "totalbytes" )
+		currentFormat = format_bytes_string;
+	else if ( key == "pct_cdn" )
+		currentFormat = formatPercent;
+	else
+		currentFormat = function(d){return d;}
+
+	redraw();
+}
+
+d3.select(self.frameElement).style("height", height + "px");
+
+
+function zoomed()
+{
+	var s = d3.event.scale;
+	var max_x_trans = width / 2 * ( 1 + ( ( s / scale ) - 1 ) );
+	var min_x_trans = width / 2 * ( 1 - ( ( s / scale ) - 1 ) );
+	var max_y_trans = height / 2 * ( 1 + ( ( s / scale ) - 1 ) );
+	var min_y_trans = height / 2 * ( 1 - ( ( s / scale ) - 1 ) );
+
+	var x_trans = ( d3.event.translate[0] > max_x_trans )
+		? max_x_trans
+		: ( ( d3.event.translate[0] < min_x_trans )
+		? min_x_trans
+		: d3.event.translate[0] );
+	var y_trans = ( d3.event.translate[1] > max_y_trans )
+		? max_y_trans
+		: ( ( d3.event.translate[1] < min_y_trans )
+		? min_y_trans
+		: d3.event.translate[1] );
+
+	zoom.translate([ x_trans, y_trans ]);
+
+	projection.translate([ x_trans, y_trans ]).scale(d3.event.scale);
+	g.selectAll("path").attr("d", path);
+}
+
+
+</script>
+
+<!-- Footer -->
+<div id="footer_spacer" style="" class="small_footer"></div>
+<div id="footer" role="contentinfo" class="small_footer">
+<div class="footer_content">
+
+    <div class="rule"></div>
+				<div id="footer_logo_steam"><img src="https://store.fastly.steamstatic.com/public/images/v6/logo_steam_footer.png" alt="Valve Software" border="0" /></div>
+
+    <div id="footer_logo"><a href="http://www.valvesoftware.com" target="_blank" rel=""><img src="https://store.fastly.steamstatic.com/public/images/footerLogo_valve_new.png" alt="Valve Software" border="0" /></a></div>
+    <div id="footer_text" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}" >
+        <div>©2024 Valve Corporation。保留所有权利。所有商标均为其在美国及其它国家/地区的各自持有者所有。</div>
+        <div>所有的价格均已包含增值税（如适用）。&nbsp;&nbsp;
+
+            <a href="https://store.steampowered.com/privacy_agreement/?snr=1_44_44_" target="_blank" rel="">隐私政策</a>
+            &nbsp; <span aria-hidden="true">|</span> &nbsp;
+            <a href="https://store.steampowered.com/legal/?snr=1_44_44_" target="_blank" rel="">法律信息</a>
+            &nbsp; <span aria-hidden="true">|</span> &nbsp;
+            <a href="https://store.steampowered.com/subscriber_agreement/?snr=1_44_44_" target="_blank" rel="">Steam 订户协议</a>
+            &nbsp; <span aria-hidden="true">|</span> &nbsp;
+            <a href="https://store.steampowered.com/steam_refunds/?snr=1_44_44_" target="_blank" rel="">退款</a>
+            &nbsp; <span aria-hidden="true">|</span> &nbsp;
+            <a href="https://store.steampowered.com/account/cookiepreferences/?snr=1_44_44_" target="_blank" rel="">Cookie</a>
+
+        </div>
+					<div class="responsive_optin_link">
+				<div class="btn_medium btnv6_grey_black" onclick="Responsive_RequestMobileView()">
+					<span>查看移动版网站</span>
+				</div>
+			</div>
+		
+    </div>
+
+
+
+    <div style="clear: left;"></div>
+	<br>
+
+    <div class="rule"></div>
+
+    <div class="valve_links" data-panel="{&quot;flow-children&quot;:&quot;row&quot;}" >
+        <a href="http://www.valvesoftware.com/about" target="_blank" rel="">关于 Valve</a>
+        &nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="http://www.valvesoftware.com" target="_blank" rel="">工作机会</a>
+        &nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="http://www.steampowered.com/steamworks/" target="_blank" rel="">Steamworks</a>
+        &nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="https://partner.steamgames.com/steamdirect" target="_blank" rel="">Steam 分销</a>
+        &nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="https://help.steampowered.com/zh-cn/?snr=1_44_44_">客服</a>
+                        		&nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="https://store.steampowered.com/digitalgiftcards/?snr=1_44_44_" target="_blank" rel="">礼物卡</a>
+		&nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="https://steamcommunity.com/linkfilter/?u=http%3A%2F%2Fwww.facebook.com%2FSteam" target="_blank" rel=" noopener"><img src="https://store.fastly.steamstatic.com/public/images/ico/ico_facebook.png" alt="Facebook"> Steam</a>
+		&nbsp; <span aria-hidden="true">|</span> &nbsp;<a href="http://twitter.com/steam" target="_blank" rel=""><img src="https://store.fastly.steamstatic.com/public/images/ico/ico_twitter.png" alt="X"> @steam</a>
+            </div>
+				<div class="extra_space"></div>
+	
+</div>
+</div>
+<!-- End Footer -->
+</body>
+</html>
