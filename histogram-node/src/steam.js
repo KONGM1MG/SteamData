@@ -21,7 +21,7 @@ export default function steam() {
   const svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height)
-    .style("background-color", "#f0f0f0");
+    .style("background-color", "#f0f8ff");
 
   // 添加缩放功能
   const zoom = d3.zoom()
@@ -54,18 +54,20 @@ export default function steam() {
   // 创建分段颜色比例尺
   const quantizeTotalBytes = d3.scaleQuantize()
     .domain([Math.sqrt(minTotalBytes), Math.sqrt(maxTotalBytes)])
-    .range(['#f7fbff','#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#08519c','#08306b']);
+    .range([
+      '#e0f4ff', '#a8c9e7', '#8ab8d6', '#6a9bbd', '#4c7f9d', 
+      '#3a6491', '#274c7f', '#1b3666', '#0f244d'  // 更深的蓝色范围
+    ]);
 
   const quantizeAvgMbps = d3.scaleQuantize()
     .domain([Math.sqrt(minAvgMbps), Math.sqrt(maxAvgMbps)])
-    .range(['#f7fbff','#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#08519c','#08306b']);
-
+    .range([
+      '#e0f4ff', '#a8c9e7', '#8ab8d6', '#6a9bbd', '#4c7f9d', 
+      '#3a6491', '#274c7f', '#1b3666', '#0f244d'  // 更深的蓝色范围
+    ]);
   // 绘制地图函数
   function drawMap(data, colorScale, key) {
     svg.selectAll("path").remove(); // 清空当前地图
-    d3.select("#country-info").html(`
-      <h3>点击任意地区查看详情</h3>
-    `);
     svg.append("g")
       .selectAll("path")
       .data(worldData.features)
@@ -123,33 +125,31 @@ export default function steam() {
           const height = 300;
           const barHeight = 30;
 
-          // 创建SVG容器
           let asnsHtml = `
-            <h3>互联网服务提供商（ISP）性能</h3>
-            <svg width="${width}" height="${height}">
+            <h3>互联网服务提供商性能 Top 5</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>运营商</th>
+                  <th>平均下载速度 (Mbps)</th>
+                </tr>
+              </thead>
+              <tbody>
           `;
 
-          // 创建比例尺
-          const x = d3.scaleLinear()
-                      .domain([0, d3.max(topAsns, d => d.avgmbps)])
-                      .range([0, width]);
-
-          // 创建颜色比例尺
-          const color = d3.scaleOrdinal()
-                          .domain(topAsns.map((d, i) => i))
-                          .range(['#f2f0f7','#cbc9e2','#9e9ac8','#756bb1','#54278f']);
-
-          // 绘制横向柱状图
-          topAsns.forEach((asn, i) => {
+          topAsns.forEach((asn) => {
             asnsHtml += `
-              <g transform="translate(0, ${i * barHeight})">
-                <text x="-20" y="${barHeight / 2}" dy=".35em" text-anchor="end">${asn.asname}</text>
-                <rect width="0" height="${barHeight - 1}" fill="${color(4-i)}">
-                  <animate attributeName="width" from="0" to="${x(asn.avgmbps)}" dur="1s" fill="freeze" />
-                </rect>
-              </g>
+              <tr>
+                <td>${asn.asname}</td>
+                <td>${asn.avgmbps.toFixed(2)}</td>
+              </tr>
             `;
           });
+
+          asnsHtml += `
+              </tbody>
+            </table>
+          `;
 
           asnsHtml += `
           </svg>
@@ -207,16 +207,16 @@ export default function steam() {
   // 默认显示 totalbytes 数据
   drawMap(trafficData, (d) => quantizeTotalBytes(Math.sqrt(d.totalbytes)), "Total Bytes");
 
-  // 创建按钮切换功能
-  d3.select("body").append("button")
-    .text("Show Total Bytes")
-    .on("click", function() {
-      drawMap(trafficData, (d) => quantizeTotalBytes(Math.sqrt(d.totalbytes)), "Total Bytes");
-    });
+// 创建超链接切换功能
+d3.select("#show-total-bytes")
+  .on("click", function(event) {
+    event.preventDefault();
+    drawMap(trafficData, (d) => quantizeTotalBytes(Math.sqrt(d.totalbytes)), "Total Bytes");
+  });
 
-  d3.select("body").append("button")
-    .text("Show Avg Mbps")
-    .on("click", function() {
-      drawMap(trafficData, (d) => quantizeAvgMbps(Math.sqrt(d.avgmbps)), "Avg Mbps");
-    });
+d3.select("#show-avg-mbps")
+  .on("click", function(event) {
+    event.preventDefault();
+    drawMap(trafficData, (d) => quantizeAvgMbps(Math.sqrt(d.avgmbps)), "Avg Mbps");
+  });
 }

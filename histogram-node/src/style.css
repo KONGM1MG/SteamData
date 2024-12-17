@@ -18,5 +18,153 @@ body {
 
 h1 {
   font-size: 2em;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
   margin: 0.67em 0;
+}
+
+body {
+  background-color: #a8d0e6;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  font: 12px sans-serif;
+  font-family: "Verdana", sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+#map {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* 使地图路径有更好的显示效果 */
+path {
+  fill-opacity: 0.85;
+  stroke: #333;
+  stroke-width: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.map-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.map-title h3 {
+  font-size: 1.5em;
+  color: #333;
+  font-family: "Verdana", sans-serif;
+}
+
+.link-button {
+  display: inline-block;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.link-button:hover {
+  background-color: #0056b3;
+}
+
+#link-container a {
+  font-family: Verdana, Arial, sans-serif;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #007BFF;
+  font-size: 1.2em;
+}
+
+#link-container a:hover {
+  color: #0056b3;
+}
+
+.click-to-view {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-family: "Verdana", sans-serif;
+}
+
+.click-to-view p {
+  color: #555;
+  font-style: italic;
+}
+
+/* 将 #asns-list 居中 */
+#asns-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #a8d0e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 标题样式 */
+#asns-list h3 {
+  font-size: 1.5em;
+  color: #333;
+  font-family: "Verdana", sans-serif;
+  margin-bottom: 20px;
+}
+
+/* 表格样式 */
+#asns-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#asns-list table th, #asns-list table td {
+  padding: 10px;
+  text-align: left;
+}
+
+#asns-list table th {
+  background-color: #007BFF;
+  color: white;
+  font-size: 1.1em;
+}
+
+#asns-list table td {
+  border-bottom: 1px solid #ccc;
+}
+
+#asns-list table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* 响应式设计：在小屏幕上，调整表格宽度 */
+@media (max-width: 768px) {
+  #asns-list {
+    width: 95%;
+  }
+
+  #asns-list table th, #asns-list table td {
+    font-size: 0.9em;
+  }
+
+  #asns-list h3 {
+    font-size: 1.5em;
+  }
 }
