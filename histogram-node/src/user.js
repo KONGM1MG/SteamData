@@ -1,6 +1,3 @@
-
-
-
 export function renderChart(containerId) {
     const margin = { top: 40, right: 30, bottom: 30, left: 70 };
     const width = 1000 - margin.left - margin.right;
@@ -44,7 +41,7 @@ export function renderChart(containerId) {
     // 添加坐标轴
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(xScale).tickFormat(() => "")); // 隐藏横坐标的数字
+        .call(d3.axisBottom(xScale).tickSize(0).tickFormat(() => "")); // 隐藏横坐标的刻度和数字
 
     svg.append("g")
         .call(d3.axisLeft(yScale).ticks(5).tickFormat(d => d3.format(".2s")(d)));
@@ -120,4 +117,3 @@ export function renderChart(containerId) {
         .attr("fill", "#ff0000")
         .text(`峰值: ${(peakValue / 1000000).toFixed(2)}M`);
 }
-
