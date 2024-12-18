@@ -1,4 +1,4 @@
-export function renderChart(containerId) {
+export function renderChart(containerId, data) {
     const margin = { top: 40, right: 30, bottom: 30, left: 70 };
     const width = 1000 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
@@ -11,24 +11,13 @@ export function renderChart(containerId) {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // 数据
-    const data = [
-        { time: new Date("2024-12-13 00:00:00"), players: 23333767 },
-        { time: new Date("2024-12-13 00:10:00"), players: 23296437 },
-        { time: new Date("2024-12-13 00:20:00"), players: 23288659 },
-        { time: new Date("2024-12-13 00:30:00"), players: 23339061 },
-        { time: new Date("2024-12-13 00:40:00"), players: 23414174 },
-        { time: new Date("2024-12-13 00:50:00"), players: 23483819 },
-        { time: new Date("2024-12-13 01:00:00"), players: 23574518 },
-        { time: new Date("2024-12-13 01:10:00"), players: 23657836 },
-        { time: new Date("2024-12-13 01:20:00"), players: 23727099 },
-        { time: new Date("2024-12-13 01:30:00"), players: 23830385 },
-        { time: new Date("2024-12-13 01:40:00"), players: 23907570 },
-        { time: new Date("2024-12-13 01:50:00"), players: 24004171 },
-        { time: new Date("2024-12-13 02:00:00"), players: 24083565 },
-        { time: new Date("2024-12-13 02:10:00"), players: 24175694 }
-    ];
 
+    // 时间格式化
+    const parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+    data.forEach(d => {
+        d.time = parseTime(d.time);
+        d.players = +d.players;
+    });
     // 定义比例尺
     const xScale = d3.scaleTime()
         .domain(d3.extent(data, d => d.time))

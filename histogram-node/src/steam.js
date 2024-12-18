@@ -116,7 +116,7 @@ export default function steam() {
           `);
         }
         const asns = top_asns[countryCode];
-        console.log(asns);
+
         if (asns) {
           // 按平均下载速度降序排序并取前5个
           const topAsns = asns.sort((a, b) => b.avgmbps - a.avgmbps).slice(0, 5);
