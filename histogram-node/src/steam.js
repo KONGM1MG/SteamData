@@ -1,11 +1,10 @@
 import * as d3 from "d3";
-import worldData from "./world-countries.json";
-import trafficData from "./download_traffic_per_country.json";
-import top_asns from "./top_asns_per_country.json";
+import worldData from "./assets/world-countries.json";
+import trafficData from "./assets/download_traffic_per_country.json";
+import top_asns from "./assets/top_asns_per_country.json";
 
 
 export default function steam() {
-  // 基础设置
   const width = 900;
   const height = 450;
   const scale = 144;
@@ -17,20 +16,18 @@ export default function steam() {
 
   const path = d3.geoPath().projection(projection);
 
-  // 创建 SVG 元素
   const svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height)
     .style("background-color", "#f0f8ff");
 
-  // 添加缩放功能
   const zoom = d3.zoom()
     .scaleExtent([1, 8]) // 设置缩放范围
     .translateExtent([[0, 0], [width, height]]) // 设置平移范围
     .on("zoom", zoomed);
 
   svg.call(zoom)
-    .on("mousedown.zoom", null) // 禁用拖动功能
+    .on("mousedown.zoom", null)
     .on("mousemove.zoom", null)
     .on("wheel", (event) => {
       event.preventDefault();
@@ -51,7 +48,6 @@ export default function steam() {
   const minAvgMbps = d3.min(avgMbpsValues);
   const maxAvgMbps = d3.max(avgMbpsValues);
 
-  // 创建分段颜色比例尺
   const quantizeTotalBytes = d3.scaleQuantize()
     .domain([Math.sqrt(minTotalBytes), Math.sqrt(maxTotalBytes)])
     .range([
@@ -198,16 +194,13 @@ export default function steam() {
       return d.properties.name;
   }
 
-  // 创建 tooltip 元素
   d3.select("body").append("div")
     .attr("id", "tooltip")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  // 默认显示 totalbytes 数据
   drawMap(trafficData, (d) => quantizeTotalBytes(Math.sqrt(d.totalbytes)), "Total Bytes");
 
-// 创建超链接切换功能
 d3.select("#show-total-bytes")
   .on("click", function(event) {
     event.preventDefault();
