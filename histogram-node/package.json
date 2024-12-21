@@ -1,7 +1,7 @@
 {
-  "name": "histogram",
+  "name": "steamdata",
   "version": "1.0.0",
-  "description": "A JavaScript project",
+  "description": "A final project for Data Visualization",
   "main": "./dist/index.js",
   "scripts": {
     "start": "node ./node_modules/parcel-bundler/bin/cli serve ./src/index.html --port 8080",

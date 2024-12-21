@@ -1,11 +1,10 @@
 import * as d3 from "d3";
-import worldData from "./world-countries.json";
-import trafficData from "./download_traffic_per_country.json";
-import top_asns from "./top_asns_per_country.json";
+import worldData from "./assets/world-countries.json";
+import trafficData from "./assets/download_traffic_per_country.json";
+import top_asns from "./assets/top_asns_per_country.json";
 
 
 export default function steam() {
-  // 基础设置
   const width = 900;
   const height = 450;
   const scale = 144;
@@ -17,20 +16,18 @@ export default function steam() {
 
   const path = d3.geoPath().projection(projection);
 
-  // 创建 SVG 元素
   const svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height)
     .style("background-color", "#f0f8ff");
 
-  // 添加缩放功能
   const zoom = d3.zoom()
-    .scaleExtent([1, 8]) // 设置缩放范围
-    .translateExtent([[0, 0], [width, height]]) // 设置平移范围
+    .scaleExtent([1, 8]) 
+    .translateExtent([[0, 0], [width, height]]) 
     .on("zoom", zoomed);
 
   svg.call(zoom)
-    .on("mousedown.zoom", null) // 禁用拖动功能
+    .on("mousedown.zoom", null)
     .on("mousemove.zoom", null)
     .on("wheel", (event) => {
       event.preventDefault();
@@ -42,7 +39,6 @@ export default function steam() {
       .attr("transform", event.transform);
   }
 
-  // 计算 totalbytes 和 avgmbps 的最小值和最大值
   const totalBytesValues = Object.values(trafficData).map(d => d.totalbytes);
   const SumTotalBytes = d3.sum(totalBytesValues);
   const avgMbpsValues = Object.values(trafficData).map(d => d.avgmbps);
@@ -51,7 +47,6 @@ export default function steam() {
   const minAvgMbps = d3.min(avgMbpsValues);
   const maxAvgMbps = d3.max(avgMbpsValues);
 
-  // 创建分段颜色比例尺
   const quantizeTotalBytes = d3.scaleQuantize()
     .domain([Math.sqrt(minTotalBytes), Math.sqrt(maxTotalBytes)])
     .range([
@@ -79,8 +74,8 @@ export default function steam() {
         const countryData = data[countryCode];
         return countryData ? colorScale(countryData) : "#ccc";
       })
-      .attr("stroke", "#333") // 设置国家边界颜色
-      .attr("stroke-width", 0.5) // 设置国家边界宽度
+      .attr("stroke", "#333") 
+      .attr("stroke-width", 0.5) 
       .on("mouseover", function(event, d) {
         d3.select(this).style("fill", "#89adba");
         const countryCode = d.id;
@@ -104,12 +99,12 @@ export default function steam() {
           const totalBytes = formatBytes(countryData.totalbytes);
           const avgMbps = formatMbps(countryData.avgmbps);
           const globalTrafficPercentage = (countryData.totalbytes / SumTotalBytes * 100).toFixed(1) + "%";
-          d3.select("#country-info").html(`
+            d3.select("#country-info").html(`
             <h3>${LocalizeCountry(d)}</h3>
-            <p>总计字节: ${totalBytes}</p>
-            <p>平均下载速度: ${avgMbps}</p>
-            <p>Steam 全球流量百分比: ${globalTrafficPercentage}</p>
-          `);
+            <p>Total Bytes: ${totalBytes}</p>
+            <p>Average Download Speed: ${avgMbps}</p>
+            <p>Steam Global Traffic Percentage: ${globalTrafficPercentage}</p>
+            `);
         } else {
           d3.select("#country-info").html(`
             <h3>${d.properties.name}</h3>
@@ -118,24 +113,22 @@ export default function steam() {
         }
         const asns = top_asns[countryCode];
         if (asns) {
-          // 按平均下载速度降序排序并取前5个
           const topAsns = asns.sort((a, b) => b.avgmbps - a.avgmbps).slice(0, 5);
-          // 设置图表的宽度和高度
           const width = 700;
           const height = 300;
           const barHeight = 30;
 
-          let asnsHtml = `
-            <h3>互联网服务提供商性能 Top 5</h3>
+            let asnsHtml = `
+            <h3>Top 5 ISP Performance</h3>
             <table>
               <thead>
-                <tr>
-                  <th>运营商</th>
-                  <th>平均下载速度 (Mbps)</th>
-                </tr>
+              <tr>
+                <th>ISP</th>
+                <th>Average Download Speed (Mbps)</th>
+              </tr>
               </thead>
               <tbody>
-          `;
+            `;
 
           topAsns.forEach((asn) => {
             asnsHtml += `
@@ -162,22 +155,17 @@ export default function steam() {
           `);
         }
       });
-
   }
 
   // 格式化显示的数值
   function formatValue(data, key) {
     if(key=="Total Bytes")
     {    
-      if (data.totalbytes) {
-        return formatBytes(data.totalbytes);
-      }
+      return formatBytes(data.totalbytes);
     }
     else if(key=="Avg Mbps")
     {
-      if (data.avgmbps) {
-        return formatMbps(data.avgmbps);
-      }
+      return formatMbps(data.avgmbps);
     }
     return "No data";
   }
@@ -205,16 +193,13 @@ export default function steam() {
       return d.properties.name;
   }
 
-  // 创建 tooltip 元素
   d3.select("body").append("div")
     .attr("id", "tooltip")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  // 默认显示 totalbytes 数据
   drawMap(trafficData, (d) => quantizeTotalBytes(Math.sqrt(d.totalbytes)), "Total Bytes");
 
-// 创建超链接切换功能
 d3.select("#show-total-bytes")
   .on("click", function(event) {
     event.preventDefault();

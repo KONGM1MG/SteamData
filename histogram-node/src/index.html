@@ -1,17 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Steam 数据可视化</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam Data</title>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 600px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Steam 数据可视化</h1>
+  <h1>Steam Data</h1>
 
-  <div class="map-title">
-    <h3>Steam 全球流量图</h3>
+  <div class="title">
+    <h3>Global Traffic Map</h3>
   </div>
   <div id="map"></div>
   <div class="click-to-view">
-    <p>点击任意地区查看详情</p>
+    <p>Click any region to view details</p>
   </div>
   <div id="country-info"></div>
 
@@ -20,8 +31,15 @@
     <a href="#" id="show-avg-mbps">Show Avg Mbps</a>
   </div>
   <div id="asns-list"></div>
-  <script src="main.js"></script>
+
+  <div class="title">
+    <h3>Number of Online Users Over Time</h3>
+  </div>
+
+  <div class="chart-container" id="chart">
+  </div>
+  <div class="tooltip" id="tooltip"></div>
+
+  <script type="module" src="main.js"></script>
 </body>
-
 </html>
-

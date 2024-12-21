@@ -5,3 +5,5 @@ dist/
 node_modules/
 
 test.html
+
+histogram-node/package-lock.json
