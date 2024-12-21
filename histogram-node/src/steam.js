@@ -85,7 +85,8 @@ export default function steam() {
         d3.select(this).style("fill", "#89adba");
         const countryCode = d.id;
         const countryData = data[countryCode];
-        const value = countryData ? formatValue(countryData) : "No data";
+
+        const value = countryData ? formatValue(countryData, key) : "No data";
         d3.select("#tooltip")
           .style("left", (event.pageX + 5) + "px")
           .style("top", (event.pageY - 28) + "px")
@@ -116,7 +117,6 @@ export default function steam() {
           `);
         }
         const asns = top_asns[countryCode];
-        console.log(asns);
         if (asns) {
           // 按平均下载速度降序排序并取前5个
           const topAsns = asns.sort((a, b) => b.avgmbps - a.avgmbps).slice(0, 5);
@@ -166,11 +166,18 @@ export default function steam() {
   }
 
   // 格式化显示的数值
-  function formatValue(data) {
-    if (data.totalbytes) {
-      return formatBytes(data.totalbytes);
-    } else if (data.avgmbps) {
-      return data.avgmbps.toFixed(2) + " Mbps";
+  function formatValue(data, key) {
+    if(key=="Total Bytes")
+    {    
+      if (data.totalbytes) {
+        return formatBytes(data.totalbytes);
+      }
+    }
+    else if(key=="Avg Mbps")
+    {
+      if (data.avgmbps) {
+        return formatMbps(data.avgmbps);
+      }
     }
     return "No data";
   }
@@ -183,7 +190,7 @@ export default function steam() {
   }
 
   function formatMbps(mbps) {
-    const sizes = ['Mbps', 'Gbps', 'Tbps', 'Pbps'];
+    const sizes = ['bps', 'Kbps', 'Mbps', 'Gbps', 'Tbps', 'Pbps'];
     if (mbps === 0) return '0 Mbps';
     const i = parseInt(Math.floor(Math.log(mbps) / Math.log(1024)));
     return (mbps / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
