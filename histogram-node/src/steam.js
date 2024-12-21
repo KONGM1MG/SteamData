@@ -74,8 +74,8 @@ export default function steam() {
         const countryData = data[countryCode];
         return countryData ? colorScale(countryData) : "#ccc";
       })
-      .attr("stroke", "#333") // 设置国家边界颜色
-      .attr("stroke-width", 0.5) // 设置国家边界宽度
+      .attr("stroke", "#333") 
+      .attr("stroke-width", 0.5) 
       .on("mouseover", function(event, d) {
         d3.select(this).style("fill", "#89adba");
         const countryCode = d.id;
@@ -98,12 +98,12 @@ export default function steam() {
           const totalBytes = formatBytes(countryData.totalbytes);
           const avgMbps = formatMbps(countryData.avgmbps);
           const globalTrafficPercentage = (countryData.totalbytes / SumTotalBytes * 100).toFixed(1) + "%";
-          d3.select("#country-info").html(`
+            d3.select("#country-info").html(`
             <h3>${LocalizeCountry(d)}</h3>
-            <p>总计字节: ${totalBytes}</p>
-            <p>平均下载速度: ${avgMbps}</p>
-            <p>Steam 全球流量百分比: ${globalTrafficPercentage}</p>
-          `);
+            <p>Total Bytes: ${totalBytes}</p>
+            <p>Average Download Speed: ${avgMbps}</p>
+            <p>Steam Global Traffic Percentage: ${globalTrafficPercentage}</p>
+            `);
         } else {
           d3.select("#country-info").html(`
             <h3>${d.properties.name}</h3>
@@ -111,26 +111,23 @@ export default function steam() {
           `);
         }
         const asns = top_asns[countryCode];
-        console.log(asns);
         if (asns) {
-          // 按平均下载速度降序排序并取前5个
           const topAsns = asns.sort((a, b) => b.avgmbps - a.avgmbps).slice(0, 5);
-          // 设置图表的宽度和高度
           const width = 700;
           const height = 300;
           const barHeight = 30;
 
-          let asnsHtml = `
-            <h3>互联网服务提供商性能 Top 5</h3>
+            let asnsHtml = `
+            <h3>Top 5 ISP Performance</h3>
             <table>
               <thead>
-                <tr>
-                  <th>运营商</th>
-                  <th>平均下载速度 (Mbps)</th>
-                </tr>
+              <tr>
+                <th>ISP</th>
+                <th>Average Download Speed (Mbps)</th>
+              </tr>
               </thead>
               <tbody>
-          `;
+            `;
 
           topAsns.forEach((asn) => {
             asnsHtml += `
@@ -157,10 +154,8 @@ export default function steam() {
           `);
         }
       });
-
   }
 
-  // 格式化显示的数值
   function formatValue(data) {
     if (data.totalbytes) {
       return formatBytes(data.totalbytes);

@@ -76,8 +76,8 @@ export default function renderChart() {
                 tooltip.style("display", "block")
                     .style("opacity", 1)
                     .html(`
-                        <strong>时间:</strong> ${d3.timeFormat("%Y-%m-%d %H:%M")(d.time)}<br>
-                        <strong>玩家数:</strong> ${(d.players / 1000000).toFixed(2)}M
+                        <strong>Time:</strong> ${d3.timeFormat("%Y-%m-%d %H:%M")(d.time)}<br>
+                        <strong>User:</strong> ${(d.players / 1000000).toFixed(2)}M
                     `);
                 d3.select(event.target)
                     .transition()
@@ -114,7 +114,7 @@ export default function renderChart() {
             .attr("x", width - 100)
             .attr("y", yScale(peakValue) - 10)
             .attr("fill", "#ff0000")
-            .text(`峰值: ${(peakValue / 1000000).toFixed(2)}M`);
+            .text(`Max : ${(peakValue / 1000000).toFixed(2)}M`);
     }).catch(error => {
         console.error("Error loading the CSV file:", error);
     });
