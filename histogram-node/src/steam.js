@@ -1,7 +1,7 @@
 import * as d3 from "d3";
-import worldData from "./world-countries.json";
-import trafficData from "./download_traffic_per_country.json";
-import top_asns from "./top_asns_per_country.json";
+import worldData from "./assets/world-countries.json";
+import trafficData from "./assets/download_traffic_per_country.json";
+import top_asns from "./assets/top_asns_per_country.json";
 
 
 export default function steam() {
