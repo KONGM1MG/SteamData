@@ -4,7 +4,6 @@ import steam from "./steam.js";
 
 
 
-// console.log(data);
 steam();
 
 

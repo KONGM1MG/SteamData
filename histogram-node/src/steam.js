@@ -22,8 +22,8 @@ export default function steam() {
     .style("background-color", "#f0f8ff");
 
   const zoom = d3.zoom()
-    .scaleExtent([1, 8]) // 设置缩放范围
-    .translateExtent([[0, 0], [width, height]]) // 设置平移范围
+    .scaleExtent([1, 8]) 
+    .translateExtent([[0, 0], [width, height]]) 
     .on("zoom", zoomed);
 
   svg.call(zoom)
@@ -39,7 +39,6 @@ export default function steam() {
       .attr("transform", event.transform);
   }
 
-  // 计算 totalbytes 和 avgmbps 的最小值和最大值
   const totalBytesValues = Object.values(trafficData).map(d => d.totalbytes);
   const SumTotalBytes = d3.sum(totalBytesValues);
   const avgMbpsValues = Object.values(trafficData).map(d => d.avgmbps);
